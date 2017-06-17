@@ -5,12 +5,17 @@
  */
 package com.sixteencolorgames.supertechprocessing.proxy;
 
+import com.sixteencolorgames.supertechprocessing.ModBlocks;
 import com.sixteencolorgames.supertechprocessing.SuperTechProcessingMod;
 import com.sixteencolorgames.supertechprocessing.compat.MineTweaker;
+import com.sixteencolorgames.supertechprocessing.crafting.ExtruderManager;
 import com.sixteencolorgames.supertechprocessing.network.GUIHandler;
-import com.sixteencolorgames.supertechtweaks.ModBlocks;
+import com.sixteencolorgames.supertechtweaks.ModItems;
+import com.sixteencolorgames.supertechtweaks.enums.Material;
+import static com.sixteencolorgames.supertechtweaks.items.ItemMaterialObject.*;
 import com.sixteencolorgames.supertechtweaks.network.PacketHandler;
 import java.io.File;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -36,12 +41,17 @@ public class CommonProxy {
         File configFolder = new File(event.getModConfigurationDirectory().toString() + "/supertechprocessing/");
         config = new Configuration(new File(configFolder.getPath(), "config.cfg"));
         //Config.readConfig();
+
     }
 
     public void postInit(FMLPostInitializationEvent event) {
         if (Loader.isModLoaded("MineTweaker3")) {
             MineTweaker.init();
         }
+        Material.materials.forEach((ore) -> {
+            ExtruderManager.instance().addExtrusion(new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + ROD), new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + WIRE), 160);
+            ExtruderManager.instance().addExtrusion(new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + INGOT), new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + ROD), 160);
+        });
     }
 
     private static void initDefault(File configFolder) {
