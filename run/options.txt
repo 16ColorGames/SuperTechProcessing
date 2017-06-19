@@ -96,6 +96,7 @@ key_enderio.keybind.fovplus:0
 key_enderio.keybind.fovminus:0
 key_enderio.keybind.fovplusfast:0
 key_enderio.keybind.fovminusfast:0
+key_key.cofh.multimode:47
 key_waila.keybind.wailaconfig:82
 key_waila.keybind.wailadisplay:79
 key_waila.keybind.liquid:80
@@ -107,7 +108,6 @@ key_key.jei.showRecipe:19
 key_key.jei.showUses:22
 key_key.jei.recipeBack:14
 key_key.jei.toggleCheatMode:0
-key_key.cofh.multimode:47
 soundCategory_master:0.0
 soundCategory_music:1.0
 soundCategory_record:1.0

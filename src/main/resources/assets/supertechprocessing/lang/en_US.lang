@@ -1,2 +1,4 @@
 container.extruder=Extrusion Machine
+container.extruder_electric=Electric Extrusion Machine
 tile.extruder.name=Extruder
+tile.extruderElectric.name=Electric Extruder

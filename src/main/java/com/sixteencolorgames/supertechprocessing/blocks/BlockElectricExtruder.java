@@ -36,7 +36,7 @@ public class BlockElectricExtruder extends BlockBase {
      */
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return Item.getItemFromBlock(ModBlocks.extruder);
+        return Item.getItemFromBlock(ModBlocks.extruderElectric);
     }
 
     @Override
@@ -90,8 +90,8 @@ public class BlockElectricExtruder extends BlockBase {
             // worldIn.setBlockState(pos, BlocksCore.lit_extruder.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
             // worldIn.setBlockState(pos, BlocksCore.lit_extruder.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
         } else {
-            worldIn.setBlockState(pos, ModBlocks.extruder.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, ModBlocks.extruder.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, ModBlocks.extruderElectric.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, ModBlocks.extruderElectric.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
         }
 
         keepInventory = false;
@@ -154,7 +154,7 @@ public class BlockElectricExtruder extends BlockBase {
 
     @Override
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-        return new ItemStack(ModBlocks.extruder);
+        return new ItemStack(ModBlocks.extruderElectric);
     }
 
     @Override
