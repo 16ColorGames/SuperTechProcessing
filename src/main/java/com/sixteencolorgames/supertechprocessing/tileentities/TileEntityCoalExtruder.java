@@ -3,11 +3,9 @@ package com.sixteencolorgames.supertechprocessing.tileentities;
 import com.sixteencolorgames.supertechprocessing.blocks.BlockCoalExtruder;
 import com.sixteencolorgames.supertechprocessing.crafting.ExtruderManager;
 import com.sixteencolorgames.supertechprocessing.gui.ContainerCoalExtruder;
+import com.sixteencolorgames.supertechtweaks.tileentities.TileEntityBase;
 import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
-
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
@@ -15,22 +13,14 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.SlotFurnaceFuel;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraft.item.ItemTool;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import static net.minecraft.tileentity.TileEntityFurnace.getItemBurnTime;
-import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

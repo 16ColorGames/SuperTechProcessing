@@ -49,8 +49,8 @@ public class CommonProxy {
             MineTweaker.init();
         }
         Material.materials.forEach((ore) -> {
-            ExtruderManager.instance().addExtrusion(new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + ROD), new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + WIRE), 160);
-            ExtruderManager.instance().addExtrusion(new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + INGOT), new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + ROD), 160);
+            ExtruderManager.instance().addExtrusion(new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + ROD), new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + WIRE), 200);
+            ExtruderManager.instance().addExtrusion(new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + INGOT), new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + ROD), 200);
         });
     }
 

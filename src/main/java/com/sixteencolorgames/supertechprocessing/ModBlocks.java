@@ -6,7 +6,9 @@
 package com.sixteencolorgames.supertechprocessing;
 
 import com.sixteencolorgames.supertechprocessing.blocks.BlockCoalExtruder;
+import com.sixteencolorgames.supertechprocessing.blocks.BlockElectricExtruder;
 import com.sixteencolorgames.supertechprocessing.tileentities.TileEntityCoalExtruder;
+import com.sixteencolorgames.supertechprocessing.tileentities.TileEntityElectricExtruder;
 import com.sixteencolorgames.supertechtweaks.blocks.BlockBase;
 import com.sixteencolorgames.supertechtweaks.blocks.BlockTileEntity;
 import com.sixteencolorgames.supertechtweaks.items.ItemModelProvider;
@@ -23,10 +25,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ModBlocks {
 
     public static Block extruder;
+    public static Block extruderElectric;
 
     public static void init() {
         extruder = register(new BlockCoalExtruder(false));
         GameRegistry.registerTileEntity(TileEntityCoalExtruder.class, SuperTechProcessingMod.MODID + ".te_extruder");
+
+        extruderElectric = register(new BlockElectricExtruder());
+        GameRegistry.registerTileEntity(TileEntityElectricExtruder.class, SuperTechProcessingMod.MODID + ".te_extruder_electric");
     }
 
     /**

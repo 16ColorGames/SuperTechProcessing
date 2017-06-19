@@ -50,7 +50,7 @@ public class ExtruderManager {
     }
 
     public int getCookTime(ItemStack stack) {
-        return timeList.getOrDefault(stack, 160);
+        return timeList.getOrDefault(stack, 200);
     }
 
     public Map<ItemStack, ItemStack> getList() {
