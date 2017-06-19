@@ -52,6 +52,7 @@ public class TileEntityCoalExtruder extends TileEntityBase {
      * Sets the given item stack to the specified slot in the inventory (can be
      * crafting or armor sections).
      */
+    @Override
     public void setInventorySlotContents(int index, @Nullable ItemStack stack) {
         boolean flag = stack != null && stack.isItemEqual(itemStacks[index])
                 && ItemStack.areItemStackTagsEqual(stack, itemStacks[index]);
@@ -68,6 +69,7 @@ public class TileEntityCoalExtruder extends TileEntityBase {
         }
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
         NBTTagList nbttaglist = compound.getTagList("Items", 10);
@@ -92,6 +94,7 @@ public class TileEntityCoalExtruder extends TileEntityBase {
         }
     }
 
+    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setInteger("BurnTime", this.extrudeBurnTime);
@@ -263,6 +266,7 @@ public class TileEntityCoalExtruder extends TileEntityBase {
      * Returns true if automation is allowed to insert the given stack (ignoring
      * stack size) into the given slot.
      */
+    @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
         if (index == 2) {
             return false;
@@ -275,6 +279,7 @@ public class TileEntityCoalExtruder extends TileEntityBase {
         }
     }
 
+    @Override
     public int[] getSlotsForFace(EnumFacing side) {
         return side == EnumFacing.DOWN ? SLOTS_BOTTOM : (side == EnumFacing.UP ? SLOTS_TOP : SLOTS_SIDES);
     }
@@ -283,6 +288,7 @@ public class TileEntityCoalExtruder extends TileEntityBase {
      * Returns true if automation can extract the given item in the given slot
      * from the given side.
      */
+    @Override
     public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
         if (direction == EnumFacing.DOWN && index == 1) {
             Item item = stack.getItem();
@@ -295,10 +301,12 @@ public class TileEntityCoalExtruder extends TileEntityBase {
         return true;
     }
 
+    @Override
     public String getGuiID() {
         return "minecraft:furnace";
     }
 
+    @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
         return new ContainerCoalExtruder(playerInventory, this);
     }

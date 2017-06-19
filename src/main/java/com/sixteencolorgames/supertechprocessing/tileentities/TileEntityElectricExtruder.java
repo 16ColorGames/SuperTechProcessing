@@ -42,6 +42,7 @@ public class TileEntityElectricExtruder extends TileEntityPoweredBase {
      * Sets the given item stack to the specified slot in the inventory (can be
      * crafting or armor sections).
      */
+    @Override
     public void setInventorySlotContents(int index, @Nullable ItemStack stack) {
         boolean flag = stack != null && stack.isItemEqual(itemStacks[index])
                 && ItemStack.areItemStackTagsEqual(stack, itemStacks[index]);
@@ -58,6 +59,7 @@ public class TileEntityElectricExtruder extends TileEntityPoweredBase {
         }
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
         NBTTagList nbttaglist = compound.getTagList("Items", 10);
@@ -80,6 +82,7 @@ public class TileEntityElectricExtruder extends TileEntityPoweredBase {
         }
     }
 
+    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setInteger("CookEnergy", this.cookEnergy);
@@ -107,6 +110,7 @@ public class TileEntityElectricExtruder extends TileEntityPoweredBase {
     /**
      * Like the old updateEntity(), except more generic.
      */
+    @Override
     public void update() {
         if (canProcess()) {//If we can do a process tick
             if (!worldObj.isRemote) {
@@ -132,7 +136,7 @@ public class TileEntityElectricExtruder extends TileEntityPoweredBase {
 	 * Int - time
      */
     public int getTotalCookEnergy(@Nullable ItemStack stack) {
-        return ExtruderManager.instance().getCookTime(stack)*10;
+        return ExtruderManager.instance().getCookTime(stack) * 10;
     }
 
     /**
@@ -187,18 +191,11 @@ public class TileEntityElectricExtruder extends TileEntityPoweredBase {
         }
     }
 
-    public static boolean isItemFuel(ItemStack stack) {
-        /**
-         * Returns the number of ticks that the supplied fuel item will keep the
-         * furnace burning, or 0 if the item isn't fuel
-         */
-        return getItemBurnTime(stack) > 0;
-    }
-
     /**
      * Returns true if automation is allowed to insert the given stack (ignoring
      * stack size) into the given slot.
      */
+    @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
         if (index == 2) {
             return false;
@@ -208,6 +205,7 @@ public class TileEntityElectricExtruder extends TileEntityPoweredBase {
         return false;
     }
 
+    @Override
     public int[] getSlotsForFace(EnumFacing side) {
         return side == EnumFacing.DOWN ? SLOTS_BOTTOM : (side == EnumFacing.UP ? SLOTS_TOP : SLOTS_SIDES);
     }
@@ -216,6 +214,7 @@ public class TileEntityElectricExtruder extends TileEntityPoweredBase {
      * Returns true if automation can extract the given item in the given slot
      * from the given side.
      */
+    @Override
     public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
         if (direction == EnumFacing.DOWN && index == 1) {
             Item item = stack.getItem();
@@ -228,10 +227,12 @@ public class TileEntityElectricExtruder extends TileEntityPoweredBase {
         return true;
     }
 
+    @Override
     public String getGuiID() {
         return "minecraft:furnace";
     }
 
+    @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
         return new ContainerElectricExtruder(playerInventory, this);
     }
