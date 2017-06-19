@@ -2,7 +2,7 @@
 {
   "parent": "minecraft:block/furnace",
   "textures": {
-    "front": "supertechprocessing:blocks/coal_extruder"
+    "front": "supertechprocessing:blocks/extruder_front"
   }
  
 }

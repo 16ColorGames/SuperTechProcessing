@@ -33,7 +33,7 @@ public class TileEntityElectricExtruder extends TileEntityPoweredBase {
     private int totalCookEnergy;
 
     public TileEntityElectricExtruder() {
-        super("extruder_electric", 40, 32000);
+        super("electric_extruder", 40, 32000);
         itemStacks = new ItemStack[2];
     }
 

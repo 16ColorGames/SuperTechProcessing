@@ -1,0 +1,9 @@
+
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "blocks/iron_block",
+        "front": "supertechprocessing:blocks/extruder_front",
+        "side": "blocks/iron_block"
+    }
+}

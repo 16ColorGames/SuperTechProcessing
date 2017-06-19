@@ -1,4 +1,4 @@
-container.extruder=Extrusion Machine
-container.extruder_electric=Electric Extrusion Machine
-tile.extruder.name=Extruder
-tile.extruderElectric.name=Electric Extruder
+container.coal_extruder=Extrusion Machine
+container.electric_extruder=Electric Extrusion Machine
+tile.coal_extruder.name=Extruder
+tile.electric_extruder.name=Electric Extruder

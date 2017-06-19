@@ -27,7 +27,7 @@ public class BlockElectricExtruder extends BlockBase {
     private static boolean keepInventory;
 
     public BlockElectricExtruder() {
-        super(Material.ROCK, "extruderElectric");
+        super(Material.ROCK, "electric_extruder");
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 

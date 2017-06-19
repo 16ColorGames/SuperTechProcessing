@@ -44,7 +44,7 @@ public class TileEntityCoalExtruder extends TileEntityBase {
     private int totalCookTime;
 
     public TileEntityCoalExtruder() {
-        super("extruder");
+        super("coal_extruder");
         itemStacks = new ItemStack[3];
     }
 
