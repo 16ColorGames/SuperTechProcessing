@@ -1,7 +1,6 @@
-package com.sixteencolorgames.supertechprocessing.gui;
+package com.sixteencolorgames.supertechprocessing.machines.extruderElectric;
 
 import com.sixteencolorgames.supertechprocessing.SuperTechProcessingMod;
-import com.sixteencolorgames.supertechprocessing.tileentities.TileEntityElectricExtruder;
 import com.sixteencolorgames.supertechtweaks.gui.GuiBaseElectric;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;

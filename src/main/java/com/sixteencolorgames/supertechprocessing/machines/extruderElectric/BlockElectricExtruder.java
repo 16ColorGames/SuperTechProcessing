@@ -1,9 +1,9 @@
-package com.sixteencolorgames.supertechprocessing.blocks;
+package com.sixteencolorgames.supertechprocessing.machines.extruderElectric;
 
 import com.sixteencolorgames.supertechprocessing.ModBlocks;
 import com.sixteencolorgames.supertechprocessing.SuperTechProcessingMod;
+import com.sixteencolorgames.supertechprocessing.blocks.BlockBase;
 import com.sixteencolorgames.supertechprocessing.network.GUIHandler;
-import com.sixteencolorgames.supertechprocessing.tileentities.TileEntityElectricExtruder;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;

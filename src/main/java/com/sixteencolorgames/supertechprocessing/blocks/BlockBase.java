@@ -1,6 +1,6 @@
 package com.sixteencolorgames.supertechprocessing.blocks;
 
-import static com.sixteencolorgames.supertechprocessing.blocks.BlockCoalExtruder.FACING;
+import static com.sixteencolorgames.supertechprocessing.machines.extruderCoal.BlockCoalExtruder.FACING;
 import com.sixteencolorgames.supertechtweaks.SuperTechTweaksMod;
 import com.sixteencolorgames.supertechtweaks.items.ItemModelProvider;
 

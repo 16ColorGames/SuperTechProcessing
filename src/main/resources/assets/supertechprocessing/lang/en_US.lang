@@ -1,4 +1,9 @@
 container.coal_extruder=Extrusion Machine
 container.electric_extruder=Electric Extrusion Machine
+container.electric_roller=Electric Roller
+
 tile.coal_extruder.name=Extruder
 tile.electric_extruder.name=Electric Extruder
+tile.electric_roller.name=Electric Roller
+
+gui.jei.category.roller=Roller

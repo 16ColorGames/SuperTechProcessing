@@ -5,10 +5,12 @@
  */
 package com.sixteencolorgames.supertechprocessing;
 
-import com.sixteencolorgames.supertechprocessing.blocks.BlockCoalExtruder;
-import com.sixteencolorgames.supertechprocessing.blocks.BlockElectricExtruder;
-import com.sixteencolorgames.supertechprocessing.tileentities.TileEntityCoalExtruder;
-import com.sixteencolorgames.supertechprocessing.tileentities.TileEntityElectricExtruder;
+import com.sixteencolorgames.supertechprocessing.machines.extruderCoal.BlockCoalExtruder;
+import com.sixteencolorgames.supertechprocessing.machines.extruderElectric.BlockElectricExtruder;
+import com.sixteencolorgames.supertechprocessing.machines.extruderCoal.TileEntityCoalExtruder;
+import com.sixteencolorgames.supertechprocessing.machines.extruderElectric.TileEntityElectricExtruder;
+import com.sixteencolorgames.supertechprocessing.machines.rollerElectric.BlockElectricRoller;
+import com.sixteencolorgames.supertechprocessing.machines.rollerElectric.TileEntityElectricRoller;
 import com.sixteencolorgames.supertechtweaks.blocks.BlockBase;
 import com.sixteencolorgames.supertechtweaks.blocks.BlockTileEntity;
 import com.sixteencolorgames.supertechtweaks.items.ItemModelProvider;
@@ -26,6 +28,7 @@ public class ModBlocks {
 
     public static Block extruder;
     public static Block extruderElectric;
+    public static Block rollerElectric;
 
     public static void init() {
         extruder = register(new BlockCoalExtruder(false));
@@ -33,6 +36,9 @@ public class ModBlocks {
 
         extruderElectric = register(new BlockElectricExtruder());
         GameRegistry.registerTileEntity(TileEntityElectricExtruder.class, SuperTechProcessingMod.MODID + ".te_extruder_electric");
+
+        rollerElectric = register(new BlockElectricRoller());
+        GameRegistry.registerTileEntity(TileEntityElectricRoller.class, SuperTechProcessingMod.MODID + ".te_roller_electric");
     }
 
     /**
@@ -72,6 +78,7 @@ public class ModBlocks {
     /**
      * Registers a block and associated requirements
      *
+     * @param <T>
      * @param block the block to register
      * @return the block registered
      */
@@ -88,4 +95,5 @@ public class ModBlocks {
     @SideOnly(Side.CLIENT)
     public static void initItemModels() {
     }
+
 }

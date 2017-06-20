@@ -1,8 +1,8 @@
-package com.sixteencolorgames.supertechprocessing.gui;
+package com.sixteencolorgames.supertechprocessing.machines.extruderCoal;
 
 import com.sixteencolorgames.supertechprocessing.crafting.ExtruderManager;
-import com.sixteencolorgames.supertechprocessing.tileentities.TileEntityCoalExtruder;
-import static com.sixteencolorgames.supertechprocessing.tileentities.TileEntityCoalExtruder.*;
+import com.sixteencolorgames.supertechprocessing.machines.extruderCoal.TileEntityCoalExtruder;
+import static com.sixteencolorgames.supertechprocessing.machines.extruderCoal.TileEntityCoalExtruder.*;
 import com.sixteencolorgames.supertechtweaks.gui.ContainerBase;
 import javax.annotation.Nullable;
 

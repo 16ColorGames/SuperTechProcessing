@@ -1,7 +1,6 @@
-package com.sixteencolorgames.supertechprocessing.gui;
+package com.sixteencolorgames.supertechprocessing.machines.extruderElectric;
 
-import com.sixteencolorgames.supertechprocessing.tileentities.TileEntityElectricExtruder;
-import static com.sixteencolorgames.supertechprocessing.tileentities.TileEntityElectricExtruder.*;
+import static com.sixteencolorgames.supertechprocessing.machines.extruderElectric.TileEntityElectricExtruder.*;
 import com.sixteencolorgames.supertechtweaks.gui.ContainerBase;
 import javax.annotation.Nullable;
 

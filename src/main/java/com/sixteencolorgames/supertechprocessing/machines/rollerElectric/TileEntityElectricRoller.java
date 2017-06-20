@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sixteencolorgames.supertechprocessing.tileentities;
+package com.sixteencolorgames.supertechprocessing.machines.rollerElectric;
 
-import com.sixteencolorgames.supertechprocessing.crafting.ExtruderManager;
-import com.sixteencolorgames.supertechprocessing.gui.ContainerElectricExtruder;
+import com.sixteencolorgames.supertechprocessing.crafting.RollerManager;
 import com.sixteencolorgames.supertechtweaks.tileentities.TileEntityPoweredBase;
 import javax.annotation.Nullable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +22,7 @@ import net.minecraft.util.EnumFacing;
  *
  * @author oa10712
  */
-public class TileEntityElectricExtruder extends TileEntityPoweredBase {
+public class TileEntityElectricRoller extends TileEntityPoweredBase {
 
     public static final int INPUT_SLOT = 0, OUTPUT_SLOT = 1;
     private static final int[] SLOTS_TOP = new int[]{INPUT_SLOT};
@@ -32,8 +31,8 @@ public class TileEntityElectricExtruder extends TileEntityPoweredBase {
     private int cookEnergy;
     private int totalCookEnergy;
 
-    public TileEntityElectricExtruder() {
-        super("electric_extruder", 40, 32000);
+    public TileEntityElectricRoller() {
+        super("electric_roller", 40, 32000);
         itemStacks = new ItemStack[2];
     }
 
@@ -135,7 +134,7 @@ public class TileEntityElectricExtruder extends TileEntityPoweredBase {
 	 * Int - time
      */
     public int getTotalCookEnergy(@Nullable ItemStack stack) {
-        return ExtruderManager.instance().getCookTime(stack) * 10;
+        return RollerManager.instance().getCookTime(stack) * 10;
     }
 
     /**
@@ -149,7 +148,7 @@ public class TileEntityElectricExtruder extends TileEntityPoweredBase {
         if (this.getEnergyStored() <= 0) {//if there is no energy left
             return false;
         }
-        ItemStack itemstack = ExtruderManager.instance().getResult(itemStacks[INPUT_SLOT]);
+        ItemStack itemstack = RollerManager.instance().getResult(itemStacks[INPUT_SLOT]);
         if (itemstack == null) {//if there is no valid recipe
             return false;
         }
@@ -169,7 +168,7 @@ public class TileEntityElectricExtruder extends TileEntityPoweredBase {
      * item in the furnace result stack
      */
     public void processItem() {
-        ItemStack itemstack = ExtruderManager.instance().getResult(itemStacks[INPUT_SLOT]);
+        ItemStack itemstack = RollerManager.instance().getResult(itemStacks[INPUT_SLOT]);
 
         if (itemStacks[OUTPUT_SLOT] == null) {
             itemStacks[OUTPUT_SLOT] = itemstack.copy();
@@ -233,7 +232,7 @@ public class TileEntityElectricExtruder extends TileEntityPoweredBase {
 
     @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
-        return new ContainerElectricExtruder(playerInventory, this);
+        return new ContainerElectricRoller(playerInventory, this);
     }
 
     public final static int ENERGY = 0, MAX_ENERGY = 1, COOK_TIME = 2, TOTAL_COOK_TIME = 3;
