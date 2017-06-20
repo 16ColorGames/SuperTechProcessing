@@ -24,18 +24,18 @@ public class ExtruderRecipeMaker {
     public static List<ExtruderRecipe> getRecipes(IJeiHelpers helpers) {
         IStackHelper stackHelper = helpers.getStackHelper();
         ExtruderManager furnaceRecipes = ExtruderManager.instance();
-        Map<ItemStack, ItemStack> smeltingMap = furnaceRecipes.getList();
+        Map<List<ItemStack>, ItemStack> smeltingMap = furnaceRecipes.getList();
 
-        List<ExtruderRecipe> recipes = new ArrayList<ExtruderRecipe>();
+        List<ExtruderRecipe> recipes = new ArrayList();
 
-        for (Map.Entry<ItemStack, ItemStack> itemStackItemStackEntry : smeltingMap.entrySet()) {
-            ItemStack input = itemStackItemStackEntry.getKey();
+        smeltingMap.entrySet().stream().map((itemStackItemStackEntry) -> {
             ItemStack output = itemStackItemStackEntry.getValue();
-
-            List<ItemStack> inputs = stackHelper.getSubtypes(input);
+            List<ItemStack> inputs = itemStackItemStackEntry.getKey();
             ExtruderRecipe recipe = new ExtruderRecipe(inputs, output);
+            return recipe;
+        }).forEachOrdered((recipe) -> {
             recipes.add(recipe);
-        }
+        });
 
         return recipes;
     }

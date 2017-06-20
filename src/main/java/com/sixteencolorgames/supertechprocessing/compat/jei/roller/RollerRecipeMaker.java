@@ -24,18 +24,18 @@ public class RollerRecipeMaker {
     public static List<RollerRecipe> getRecipes(IJeiHelpers helpers) {
         IStackHelper stackHelper = helpers.getStackHelper();
         RollerManager furnaceRecipes = RollerManager.instance();
-        Map<ItemStack, ItemStack> smeltingMap = furnaceRecipes.getList();
+        Map<List<ItemStack>, ItemStack> smeltingMap = furnaceRecipes.getList();
 
-        List<RollerRecipe> recipes = new ArrayList<RollerRecipe>();
+        List<RollerRecipe> recipes = new ArrayList();
 
-        for (Map.Entry<ItemStack, ItemStack> itemStackItemStackEntry : smeltingMap.entrySet()) {
-            ItemStack input = itemStackItemStackEntry.getKey();
+        smeltingMap.entrySet().stream().map((itemStackItemStackEntry) -> {
             ItemStack output = itemStackItemStackEntry.getValue();
-
-            List<ItemStack> inputs = stackHelper.getSubtypes(input);
+            List<ItemStack> inputs = itemStackItemStackEntry.getKey();
             RollerRecipe recipe = new RollerRecipe(inputs, output);
+            return recipe;
+        }).forEachOrdered((recipe) -> {
             recipes.add(recipe);
-        }
+        });
 
         return recipes;
     }

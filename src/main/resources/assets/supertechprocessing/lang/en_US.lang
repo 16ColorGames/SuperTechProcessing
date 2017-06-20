@@ -7,3 +7,4 @@ tile.electric_extruder.name=Electric Extruder
 tile.electric_roller.name=Electric Roller
 
 gui.jei.category.roller=Roller
+gui.jei.category.extruder=Extruder

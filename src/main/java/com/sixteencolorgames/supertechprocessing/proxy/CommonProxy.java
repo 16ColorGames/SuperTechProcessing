@@ -6,17 +6,12 @@
 package com.sixteencolorgames.supertechprocessing.proxy;
 
 import com.sixteencolorgames.supertechprocessing.ModBlocks;
+import com.sixteencolorgames.supertechprocessing.Recipes;
 import com.sixteencolorgames.supertechprocessing.SuperTechProcessingMod;
 import com.sixteencolorgames.supertechprocessing.compat.MineTweaker;
-import com.sixteencolorgames.supertechprocessing.crafting.ExtruderManager;
-import com.sixteencolorgames.supertechprocessing.crafting.RollerManager;
 import com.sixteencolorgames.supertechprocessing.network.GUIHandler;
-import com.sixteencolorgames.supertechtweaks.ModItems;
-import com.sixteencolorgames.supertechtweaks.enums.Material;
-import static com.sixteencolorgames.supertechtweaks.items.ItemMaterialObject.*;
 import com.sixteencolorgames.supertechtweaks.network.PacketHandler;
 import java.io.File;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -49,12 +44,7 @@ public class CommonProxy {
         if (Loader.isModLoaded("MineTweaker3")) {
             MineTweaker.init();
         }
-        Material.materials.forEach((ore) -> {
-            ExtruderManager.instance().addExtrusion(new ItemStack(ModItems.itemMaterialObject, 1, ore.ordinal() + ROD), new ItemStack(ModItems.itemMaterialObject, 1, ore.ordinal() + WIRE), 200);
-            ExtruderManager.instance().addExtrusion(new ItemStack(ModItems.itemMaterialObject, 1, ore.ordinal() + INGOT), new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + ROD), 200);
-            RollerManager.instance().addRolling(new ItemStack(ModItems.itemMaterialObject, 1, ore.ordinal() + INGOT), new ItemStack(ModItems.itemMaterialObject, 1, ore.ordinal() + PLATE), 200);
-            RollerManager.instance().addRolling(new ItemStack(ModItems.itemMaterialObject, 1, ore.ordinal() + PLATE), new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + FOIL), 200);
-        });
+        Recipes.init();
     }
 
     private static void initDefault(File configFolder) {

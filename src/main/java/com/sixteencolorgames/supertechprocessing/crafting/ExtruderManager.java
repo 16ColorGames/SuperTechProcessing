@@ -5,9 +5,12 @@
  */
 package com.sixteencolorgames.supertechprocessing.crafting;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 /**
  *
@@ -16,26 +19,36 @@ import net.minecraft.item.ItemStack;
 public class ExtruderManager {
 
     static final ExtruderManager INSTANCE = new ExtruderManager();
-    HashMap<ItemStack, ItemStack> extrudeList = new HashMap();
-    HashMap<ItemStack, Integer> timeList = new HashMap();
+    HashMap<List<ItemStack>, ItemStack> extrudeList = new HashMap();
+    HashMap<List<ItemStack>, Integer> timeList = new HashMap();
 
     public static ExtruderManager instance() {
         return INSTANCE;
     }
 
-    public boolean addExtrusion(ItemStack in, ItemStack out, int time) {
-        if (extrudeList.containsKey(in)) {
-            return false;
+    public boolean addExtrusion(Object in, ItemStack out, int time) {
+        List<ItemStack> ores = null;
+        if (in instanceof ItemStack) {
+            ores = new ArrayList();
+            ores.add((ItemStack) in);
         }
-        extrudeList.put(in, out);
-        timeList.put(in, time);
-        return true;
+        if (in instanceof String) {
+            ores = OreDictionary.getOres((String) in);
+        }
+        if (ores != null) {
+            extrudeList.put(ores, out);
+            timeList.put(ores, time);
+            return true;
+        }
+        return false;
     }
 
     public ItemStack getResult(ItemStack in) {
-        for (Map.Entry<ItemStack, ItemStack> entry : this.extrudeList.entrySet()) {
-            if (this.compareItemStacks(in, (ItemStack) entry.getKey())) {
-                return (ItemStack) entry.getValue();
+        for (Map.Entry<List<ItemStack>, ItemStack> entry : this.extrudeList.entrySet()) {
+            for (ItemStack check : entry.getKey()) {
+                if (this.compareItemStacks(in, check)) {
+                    return (ItemStack) entry.getValue();
+                }
             }
         }
         return null;
@@ -53,7 +66,7 @@ public class ExtruderManager {
         return timeList.getOrDefault(stack, 200);
     }
 
-    public Map<ItemStack, ItemStack> getList() {
+    public Map<List<ItemStack>, ItemStack> getList() {
         return extrudeList;
     }
 }

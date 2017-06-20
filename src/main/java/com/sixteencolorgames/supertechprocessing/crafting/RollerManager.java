@@ -5,11 +5,13 @@
  */
 package com.sixteencolorgames.supertechprocessing.crafting;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import mezz.jei.api.IJeiHelpers;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 /**
  *
@@ -18,26 +20,36 @@ import net.minecraft.item.ItemStack;
 public class RollerManager {
 
     static final RollerManager INSTANCE = new RollerManager();
-    HashMap<ItemStack, ItemStack> rollList = new HashMap();
-    HashMap<ItemStack, Integer> timeList = new HashMap();
+    HashMap<List<ItemStack>, ItemStack> rollList = new HashMap();
+    HashMap<List<ItemStack>, Integer> timeList = new HashMap();
 
     public static RollerManager instance() {
         return INSTANCE;
     }
 
-    public boolean addRolling(ItemStack in, ItemStack out, int time) {
-        if (rollList.containsKey(in)) {
-            return false;
+    public boolean addRolling(Object in, ItemStack out, int time) {
+        List<ItemStack> ores = null;
+        if (in instanceof ItemStack) {
+            ores = new ArrayList();
+            ores.add((ItemStack) in);
         }
-        rollList.put(in, out);
-        timeList.put(in, time);
-        return true;
+        if (in instanceof String) {
+            ores = OreDictionary.getOres((String) in);
+        }
+        if (ores != null) {
+            rollList.put(ores, out);
+            timeList.put(ores, time);
+            return true;
+        }
+        return false;
     }
 
     public ItemStack getResult(ItemStack in) {
-        for (Map.Entry<ItemStack, ItemStack> entry : this.rollList.entrySet()) {
-            if (this.compareItemStacks(in, (ItemStack) entry.getKey())) {
-                return (ItemStack) entry.getValue();
+        for (Map.Entry<List<ItemStack>, ItemStack> entry : this.rollList.entrySet()) {
+            for (ItemStack check : entry.getKey()) {
+                if (this.compareItemStacks(in, check)) {
+                    return (ItemStack) entry.getValue();
+                }
             }
         }
         return null;
@@ -55,7 +67,7 @@ public class RollerManager {
         return timeList.getOrDefault(stack, 200);
     }
 
-    public Map<ItemStack, ItemStack> getList() {
+    public Map<List<ItemStack>, ItemStack> getList() {
         return rollList;
     }
 
