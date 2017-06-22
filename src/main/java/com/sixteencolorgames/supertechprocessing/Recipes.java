@@ -9,10 +9,7 @@ import com.sixteencolorgames.supertechprocessing.crafting.ExtruderManager;
 import com.sixteencolorgames.supertechprocessing.crafting.RollerManager;
 import com.sixteencolorgames.supertechtweaks.ModItems;
 import com.sixteencolorgames.supertechtweaks.enums.Material;
-import static com.sixteencolorgames.supertechtweaks.items.ItemMaterialObject.FOIL;
-import static com.sixteencolorgames.supertechtweaks.items.ItemMaterialObject.PLATE;
-import static com.sixteencolorgames.supertechtweaks.items.ItemMaterialObject.ROD;
-import static com.sixteencolorgames.supertechtweaks.items.ItemMaterialObject.WIRE;
+import static com.sixteencolorgames.supertechtweaks.items.ItemMaterialObject.*;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -29,5 +26,4 @@ public class Recipes {
             RollerManager.instance().addRolling("plate" + ore.getName(), new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + FOIL), 200);
         });
     }
-
 }

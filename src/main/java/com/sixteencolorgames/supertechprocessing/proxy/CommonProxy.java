@@ -8,7 +8,7 @@ package com.sixteencolorgames.supertechprocessing.proxy;
 import com.sixteencolorgames.supertechprocessing.ModBlocks;
 import com.sixteencolorgames.supertechprocessing.Recipes;
 import com.sixteencolorgames.supertechprocessing.SuperTechProcessingMod;
-import com.sixteencolorgames.supertechprocessing.compat.MineTweaker;
+import com.sixteencolorgames.supertechprocessing.compat.CraftTweaker.MineTweaker;
 import com.sixteencolorgames.supertechprocessing.network.GUIHandler;
 import com.sixteencolorgames.supertechtweaks.network.PacketHandler;
 import java.io.File;
@@ -42,7 +42,7 @@ public class CommonProxy {
 
     public void postInit(FMLPostInitializationEvent event) {
         if (Loader.isModLoaded("MineTweaker3")) {
-            MineTweaker.init();
+            MineTweaker.INSTANCE.init();
         }
         Recipes.init();
     }

@@ -64,6 +64,7 @@ repositories {
         name = "ModMaven"
         url = "modmaven.k-4u.nl"
     }
+    maven { url "http://blamejared.com/maven" }
 }
 
 dependencies {
@@ -93,7 +94,10 @@ dependencies {
     deobfCompile "slimeknights:TConstruct:1.10.2-2.6.3.500"
     deobfCompile group: 'com.github.lunatrius', name: 'LunatriusCore', version: "${project.version_minecraft}-${project.version_lunatriuscore}", classifier: 'universal'
     compile fileTree(dir: 'libs', include: '*.jar')
+    deobfCompile "MineTweaker3:MineTweaker3-API:+"
+    runtime "MineTweaker3:MineTweaker3-MC${mc_version2}-Main:+"
     
+    deobfCompile "com.blamejared:MTLib:1.0.0.7"
     
     // compile against the JEI API
     //deobfCompile "mezz.jei:jei_${version_minecraft}:${jei_version}:api"

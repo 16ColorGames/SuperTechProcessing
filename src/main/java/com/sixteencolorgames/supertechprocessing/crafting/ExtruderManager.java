@@ -17,15 +17,15 @@ import net.minecraftforge.oredict.OreDictionary;
  * @author oa10712
  */
 public class ExtruderManager {
-
+    
     static final ExtruderManager INSTANCE = new ExtruderManager();
     HashMap<List<ItemStack>, ItemStack> extrudeList = new HashMap();
     HashMap<List<ItemStack>, Integer> timeList = new HashMap();
-
+    
     public static ExtruderManager instance() {
         return INSTANCE;
     }
-
+    
     public boolean addExtrusion(Object in, ItemStack out, int time) {
         List<ItemStack> ores = null;
         if (in instanceof ItemStack) {
@@ -42,7 +42,7 @@ public class ExtruderManager {
         }
         return false;
     }
-
+    
     public ItemStack getResult(ItemStack in) {
         for (Map.Entry<List<ItemStack>, ItemStack> entry : this.extrudeList.entrySet()) {
             for (ItemStack check : entry.getKey()) {
@@ -61,12 +61,27 @@ public class ExtruderManager {
     private boolean compareItemStacks(ItemStack stack1, ItemStack stack2) {
         return stack2.getItem() == stack1.getItem() && (stack2.getMetadata() == 32767 || stack2.getMetadata() == stack1.getMetadata());
     }
-
+    
     public int getCookTime(ItemStack stack) {
         return timeList.getOrDefault(stack, 200);
     }
-
+    
     public Map<List<ItemStack>, ItemStack> getList() {
         return extrudeList;
+    }
+    
+    public void removeExtrusion(Object in) {
+        List<ItemStack> ores = null;
+        if (in instanceof ItemStack) {
+            ores = new ArrayList();
+            ores.add((ItemStack) in);
+        }
+        if (in instanceof String) {
+            ores = OreDictionary.getOres((String) in);
+        }
+        if (ores != null) {
+            extrudeList.remove(ores);
+            timeList.remove(ores);
+        }
     }
 }

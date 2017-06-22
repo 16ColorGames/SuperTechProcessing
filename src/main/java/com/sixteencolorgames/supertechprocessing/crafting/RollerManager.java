@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import mezz.jei.api.IJeiHelpers;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -70,5 +69,18 @@ public class RollerManager {
     public Map<List<ItemStack>, ItemStack> getList() {
         return rollList;
     }
-
+    public void removeRolling(Object in) {
+        List<ItemStack> ores = null;
+        if (in instanceof ItemStack) {
+            ores = new ArrayList();
+            ores.add((ItemStack) in);
+        }
+        if (in instanceof String) {
+            ores = OreDictionary.getOres((String) in);
+        }
+        if (ores != null) {
+            rollList.remove(ores);
+            timeList.remove(ores);
+        }
+    }
 }
