@@ -12,6 +12,7 @@ import com.sixteencolorgames.supertechprocessing.compat.CraftTweaker.MineTweaker
 import com.sixteencolorgames.supertechprocessing.network.GUIHandler;
 import com.sixteencolorgames.supertechtweaks.network.PacketHandler;
 import java.io.File;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -49,4 +50,9 @@ public class CommonProxy {
 
     private static void initDefault(File configFolder) {
     }
+
+    public void registerItemRenderer(Item item, int meta, String id) {
+
+    }
+
 }

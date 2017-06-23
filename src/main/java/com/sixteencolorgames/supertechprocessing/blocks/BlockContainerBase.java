@@ -1,7 +1,7 @@
 package com.sixteencolorgames.supertechprocessing.blocks;
 
+import com.sixteencolorgames.supertechprocessing.SuperTechProcessingMod;
 import static com.sixteencolorgames.supertechprocessing.machines.extruderCoal.BlockCoalExtruder.FACING;
-import com.sixteencolorgames.supertechtweaks.SuperTechTweaksMod;
 import com.sixteencolorgames.supertechtweaks.items.ItemModelProvider;
 
 import net.minecraft.block.BlockContainer;
@@ -26,13 +26,13 @@ import net.minecraft.world.World;
  * @author oa10712
  *
  */
-public abstract class BlockBase extends BlockContainer implements ItemModelProvider, ITileEntityProvider {
+public abstract class BlockContainerBase extends BlockContainer implements ItemModelProvider, ITileEntityProvider {
 
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     protected String name;
     private Item itemBlock;
 
-    public BlockBase(Material material, String name) {
+    public BlockContainerBase(Material material, String name) {
         super(material);
 
         this.name = name;
@@ -45,11 +45,11 @@ public abstract class BlockBase extends BlockContainer implements ItemModelProvi
 
     @Override
     public void registerItemModel(Item item) {
-        SuperTechTweaksMod.proxy.registerItemRenderer(item, 0, name);
+        SuperTechProcessingMod.proxy.registerItemRenderer(item, 0, name);
     }
 
     @Override
-    public BlockBase setCreativeTab(CreativeTabs tab) {
+    public BlockContainerBase setCreativeTab(CreativeTabs tab) {
         super.setCreativeTab(tab);
         return this;
     }

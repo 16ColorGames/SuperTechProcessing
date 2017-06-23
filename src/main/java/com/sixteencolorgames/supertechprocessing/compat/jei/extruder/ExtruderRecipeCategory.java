@@ -5,6 +5,7 @@
  */
 package com.sixteencolorgames.supertechprocessing.compat.jei.extruder;
 
+import com.sixteencolorgames.supertechprocessing.ModBlocks;
 import com.sixteencolorgames.supertechprocessing.SuperTechProcessingMod;
 import com.sixteencolorgames.supertechprocessing.compat.jei.UIDs;
 import com.sixteencolorgames.supertechprocessing.machines.extruderCoal.GuiCoalExtruder;
@@ -23,6 +24,7 @@ import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.util.Translator;
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 /**
@@ -44,6 +46,8 @@ public class ExtruderRecipeCategory extends BlankRecipeCategory {
         registry.addRecipes(ExtruderRecipeMaker.getRecipes(jeiHelpers));
         registry.addRecipeClickArea(GuiElectricExtruder.class, 80, 38, 20, 12, UIDs.ELECTRIC_EXTRUDER);
         registry.addRecipeClickArea(GuiCoalExtruder.class, 80, 38, 20, 12, UIDs.ELECTRIC_EXTRUDER);
+        registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.extruder), UIDs.ELECTRIC_EXTRUDER);
+        registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.extruderElectric), UIDs.ELECTRIC_EXTRUDER);
     }
 
     protected final ResourceLocation backgroundLocation;

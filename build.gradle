@@ -100,9 +100,9 @@ dependencies {
     deobfCompile "com.blamejared:MTLib:1.0.0.7"
     
     // compile against the JEI API
-    //deobfCompile "mezz.jei:jei_${version_minecraft}:${jei_version}:api"
+    deobfCompile "mezz.jei:jei_${version_minecraft}:${jei_version}:api"
     // at runtime, use the full JEI jar
-    //runtime "mezz.jei:jei_${version_minecraft}:${jei_version}"
+   // runtime "mezz.jei:jei_${version_minecraft}:${jei_version}"
 }
 
 processResources

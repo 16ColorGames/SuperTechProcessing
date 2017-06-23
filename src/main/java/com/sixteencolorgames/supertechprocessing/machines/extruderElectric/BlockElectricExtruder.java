@@ -2,7 +2,7 @@ package com.sixteencolorgames.supertechprocessing.machines.extruderElectric;
 
 import com.sixteencolorgames.supertechprocessing.ModBlocks;
 import com.sixteencolorgames.supertechprocessing.SuperTechProcessingMod;
-import com.sixteencolorgames.supertechprocessing.blocks.BlockBase;
+import com.sixteencolorgames.supertechprocessing.blocks.BlockContainerBase;
 import com.sixteencolorgames.supertechprocessing.network.GUIHandler;
 import java.util.Random;
 
@@ -22,7 +22,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockElectricExtruder extends BlockBase {
+public class BlockElectricExtruder extends BlockContainerBase {
 
     private static boolean keepInventory;
 

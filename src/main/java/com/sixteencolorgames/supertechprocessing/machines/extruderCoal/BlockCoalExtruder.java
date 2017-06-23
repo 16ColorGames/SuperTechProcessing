@@ -2,7 +2,7 @@ package com.sixteencolorgames.supertechprocessing.machines.extruderCoal;
 
 import com.sixteencolorgames.supertechprocessing.ModBlocks;
 import com.sixteencolorgames.supertechprocessing.SuperTechProcessingMod;
-import com.sixteencolorgames.supertechprocessing.blocks.BlockBase;
+import com.sixteencolorgames.supertechprocessing.blocks.BlockContainerBase;
 import com.sixteencolorgames.supertechprocessing.network.GUIHandler;
 import com.sixteencolorgames.supertechprocessing.machines.extruderCoal.TileEntityCoalExtruder;
 import java.util.Random;
@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockCoalExtruder extends BlockBase {
+public class BlockCoalExtruder extends BlockContainerBase {
 
     private final boolean isBurning;
     private static boolean keepInventory;

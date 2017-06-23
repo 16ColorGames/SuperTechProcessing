@@ -18,41 +18,41 @@ import mezz.jei.util.Log;
  */
 public class RollerRecipeHandler implements IRecipeHandler<RollerRecipe> {
 
-	@Override
-	public Class<RollerRecipe> getRecipeClass() {
-		// TODO Auto-generated method stub
-		return RollerRecipe.class;
-	}
+    @Override
+    public Class<RollerRecipe> getRecipeClass() {
+        // TODO Auto-generated method stub
+        return RollerRecipe.class;
+    }
 
-	@Override
-	public String getRecipeCategoryUid() {
-		// TODO Auto-generated method stub
-		return UIDs.ELECTRIC_ROLLER;
-	}
+    @Override
+    public String getRecipeCategoryUid() {
+        // TODO Auto-generated method stub
+        return UIDs.ELECTRIC_ROLLER;
+    }
 
-	@Nonnull
-	@Override
-	public String getRecipeCategoryUid(@Nonnull RollerRecipe recipe) {
-		return UIDs.ELECTRIC_ROLLER;
-	}
+    @Nonnull
+    @Override
+    public String getRecipeCategoryUid(@Nonnull RollerRecipe recipe) {
+        return UIDs.ELECTRIC_ROLLER;
+    }
 
-	@Override
-	@Nonnull
-	public IRecipeWrapper getRecipeWrapper(@Nonnull RollerRecipe recipe) {
-		return recipe;
-	}
+    @Override
+    @Nonnull
+    public IRecipeWrapper getRecipeWrapper(@Nonnull RollerRecipe recipe) {
+        return recipe;
+    }
 
-	@Override
-	public boolean isRecipeValid(@Nonnull RollerRecipe recipe) {
-		if (recipe.getInputs().isEmpty()) {
-			String recipeInfo = ErrorUtil.getInfoFromBrokenRecipe(recipe, this);
-			Log.error("Recipe has no inputs. {}", recipeInfo);
-		}
-		if (recipe.getOutputs().isEmpty()) {
-			String recipeInfo = ErrorUtil.getInfoFromBrokenRecipe(recipe, this);
-			Log.error("Recipe has no outputs. {}", recipeInfo);
-		}
-		return true;
-	}
+    @Override
+    public boolean isRecipeValid(@Nonnull RollerRecipe recipe) {
+        if (recipe.getInputs().isEmpty()) {
+            String recipeInfo = ErrorUtil.getInfoFromRecipe(recipe, this);
+            Log.error("Recipe has no inputs. {}", recipeInfo);
+        }
+        if (recipe.getOutputs().isEmpty()) {
+            String recipeInfo = ErrorUtil.getInfoFromRecipe(recipe, this);
+            Log.error("Recipe has no outputs. {}", recipeInfo);
+        }
+        return true;
+    }
 
 }

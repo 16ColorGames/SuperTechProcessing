@@ -5,14 +5,13 @@
  */
 package com.sixteencolorgames.supertechprocessing;
 
+import com.sixteencolorgames.supertechprocessing.blocks.BlockContainerBase;
 import com.sixteencolorgames.supertechprocessing.machines.extruderCoal.BlockCoalExtruder;
 import com.sixteencolorgames.supertechprocessing.machines.extruderElectric.BlockElectricExtruder;
 import com.sixteencolorgames.supertechprocessing.machines.extruderCoal.TileEntityCoalExtruder;
 import com.sixteencolorgames.supertechprocessing.machines.extruderElectric.TileEntityElectricExtruder;
 import com.sixteencolorgames.supertechprocessing.machines.rollerElectric.BlockElectricRoller;
 import com.sixteencolorgames.supertechprocessing.machines.rollerElectric.TileEntityElectricRoller;
-import com.sixteencolorgames.supertechtweaks.blocks.BlockBase;
-import com.sixteencolorgames.supertechtweaks.blocks.BlockTileEntity;
 import com.sixteencolorgames.supertechtweaks.items.ItemModelProvider;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
@@ -57,19 +56,14 @@ public class ModBlocks {
             if (block instanceof ItemModelProvider) {
                 ((ItemModelProvider) block).registerItemModel(itemBlock);
             }
-            if (block instanceof BlockBase) {
-                ((BlockBase) block).setItemBlock(itemBlock);
+            if (block instanceof BlockContainerBase) {
+                ((BlockContainerBase) block).setItemBlock(itemBlock);
             }
             // if (block instanceof ItemOreDict) {
             // ((ItemOreDict)block).initOreDict();
             // } else if (itemBlock instanceof ItemOreDict) {
             // ((ItemOreDict)itemBlock).initOreDict();
             // }
-        }
-
-        if (block instanceof BlockTileEntity) {
-            GameRegistry.registerTileEntity(((BlockTileEntity<?>) block).getTileEntityClass(),
-                    block.getRegistryName().toString());
         }
 
         return block;

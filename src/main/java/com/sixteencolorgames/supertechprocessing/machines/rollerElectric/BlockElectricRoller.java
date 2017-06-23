@@ -7,8 +7,8 @@ package com.sixteencolorgames.supertechprocessing.machines.rollerElectric;
 
 import com.sixteencolorgames.supertechprocessing.ModBlocks;
 import com.sixteencolorgames.supertechprocessing.SuperTechProcessingMod;
-import com.sixteencolorgames.supertechprocessing.blocks.BlockBase;
-import static com.sixteencolorgames.supertechprocessing.blocks.BlockBase.FACING;
+import com.sixteencolorgames.supertechprocessing.blocks.BlockContainerBase;
+import static com.sixteencolorgames.supertechprocessing.blocks.BlockContainerBase.FACING;
 import com.sixteencolorgames.supertechprocessing.network.GUIHandler;
 import java.util.Random;
 import net.minecraft.block.material.Material;
@@ -30,7 +30,7 @@ import net.minecraft.world.World;
  *
  * @author oa10712
  */
-public class BlockElectricRoller extends BlockBase{
+public class BlockElectricRoller extends BlockContainerBase{
 
     private static boolean keepInventory;
 
