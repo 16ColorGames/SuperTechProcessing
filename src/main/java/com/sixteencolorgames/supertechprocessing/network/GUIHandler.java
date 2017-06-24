@@ -11,6 +11,9 @@ import com.sixteencolorgames.supertechprocessing.machines.extruderCoal.GuiCoalEx
 import com.sixteencolorgames.supertechprocessing.machines.extruderElectric.GuiElectricExtruder;
 import com.sixteencolorgames.supertechprocessing.machines.extruderCoal.TileEntityCoalExtruder;
 import com.sixteencolorgames.supertechprocessing.machines.extruderElectric.TileEntityElectricExtruder;
+import com.sixteencolorgames.supertechprocessing.machines.mechanicalAssembler.ContainerMechanicalAssembler;
+import com.sixteencolorgames.supertechprocessing.machines.mechanicalAssembler.GuiMechanicalAssembler;
+import com.sixteencolorgames.supertechprocessing.machines.mechanicalAssembler.TileEntityMechanicalAssembler;
 import com.sixteencolorgames.supertechprocessing.machines.rollerElectric.ContainerElectricRoller;
 import com.sixteencolorgames.supertechprocessing.machines.rollerElectric.GuiElectricRoller;
 import com.sixteencolorgames.supertechprocessing.machines.rollerElectric.TileEntityElectricRoller;
@@ -28,6 +31,7 @@ public class GUIHandler implements IGuiHandler {
     public static final int EXTRUDER_GUI = 0;
     public static final int EXTRUDER_ELECTRIC_GUI = 1;
     public static final int ROLLER_ELECTRIC_GUI = 2;
+    public static final int MECHANICAL_ASSEMBLER_GUI = 3;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -42,6 +46,10 @@ public class GUIHandler implements IGuiHandler {
         if (ID == ROLLER_ELECTRIC_GUI) {
             TileEntityElectricRoller teCG = (TileEntityElectricRoller) world.getTileEntity(new BlockPos(x, y, z));
             return new ContainerElectricRoller(player.inventory, (TileEntityElectricRoller) world.getTileEntity(new BlockPos(x, y, z)));
+        }
+        if (ID == MECHANICAL_ASSEMBLER_GUI) {
+            TileEntityMechanicalAssembler teCG = (TileEntityMechanicalAssembler) world.getTileEntity(new BlockPos(x, y, z));
+            return new ContainerMechanicalAssembler(player.inventory, (TileEntityMechanicalAssembler) world.getTileEntity(new BlockPos(x, y, z)));
         }
         return null;
     }
@@ -59,6 +67,10 @@ public class GUIHandler implements IGuiHandler {
         if (ID == ROLLER_ELECTRIC_GUI) {
             TileEntityElectricRoller teCG = (TileEntityElectricRoller) world.getTileEntity(new BlockPos(x, y, z));
             return new GuiElectricRoller(player.inventory, (TileEntityElectricRoller) world.getTileEntity(new BlockPos(x, y, z)));
+        }
+        if (ID == MECHANICAL_ASSEMBLER_GUI) {
+            TileEntityMechanicalAssembler teCG = (TileEntityMechanicalAssembler) world.getTileEntity(new BlockPos(x, y, z));
+            return new GuiMechanicalAssembler(player.inventory, (TileEntityMechanicalAssembler) world.getTileEntity(new BlockPos(x, y, z)));
         }
         return null;
     }

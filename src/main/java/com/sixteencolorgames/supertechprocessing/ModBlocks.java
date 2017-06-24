@@ -10,6 +10,8 @@ import com.sixteencolorgames.supertechprocessing.machines.extruderCoal.BlockCoal
 import com.sixteencolorgames.supertechprocessing.machines.extruderElectric.BlockElectricExtruder;
 import com.sixteencolorgames.supertechprocessing.machines.extruderCoal.TileEntityCoalExtruder;
 import com.sixteencolorgames.supertechprocessing.machines.extruderElectric.TileEntityElectricExtruder;
+import com.sixteencolorgames.supertechprocessing.machines.mechanicalAssembler.BlockMechanicalAssembler;
+import com.sixteencolorgames.supertechprocessing.machines.mechanicalAssembler.TileEntityMechanicalAssembler;
 import com.sixteencolorgames.supertechprocessing.machines.rollerElectric.BlockElectricRoller;
 import com.sixteencolorgames.supertechprocessing.machines.rollerElectric.TileEntityElectricRoller;
 import com.sixteencolorgames.supertechtweaks.items.ItemModelProvider;
@@ -28,6 +30,7 @@ public class ModBlocks {
     public static Block extruder;
     public static Block extruderElectric;
     public static Block rollerElectric;
+    public static Block mechanicalAssembler;
 
     public static void init() {
         extruder = register(new BlockCoalExtruder(false));
@@ -38,6 +41,8 @@ public class ModBlocks {
 
         rollerElectric = register(new BlockElectricRoller());
         GameRegistry.registerTileEntity(TileEntityElectricRoller.class, SuperTechProcessingMod.MODID + ".te_roller_electric");
+        mechanicalAssembler = register(new BlockMechanicalAssembler());
+        GameRegistry.registerTileEntity(TileEntityMechanicalAssembler.class, SuperTechProcessingMod.MODID + ".te_mechanical_assembler");
     }
 
     /**

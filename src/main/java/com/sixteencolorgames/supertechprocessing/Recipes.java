@@ -6,8 +6,10 @@
 package com.sixteencolorgames.supertechprocessing;
 
 import com.sixteencolorgames.supertechprocessing.crafting.ExtruderManager;
+import com.sixteencolorgames.supertechprocessing.crafting.MechanicalAssemblerManager;
 import com.sixteencolorgames.supertechprocessing.crafting.RollerManager;
 import com.sixteencolorgames.supertechtweaks.ModItems;
+import com.sixteencolorgames.supertechtweaks.crafting.RecipeIngredient;
 import com.sixteencolorgames.supertechtweaks.enums.Material;
 import static com.sixteencolorgames.supertechtweaks.items.ItemMaterialObject.*;
 import net.minecraft.item.ItemStack;
@@ -25,5 +27,6 @@ public class Recipes {
             RollerManager.instance().addRolling("ingot" + ore.getName(), new ItemStack(ModItems.itemMaterialObject, 1, ore.ordinal() + PLATE), 200);
             RollerManager.instance().addRolling("plate" + ore.getName(), new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + FOIL), 200);
         });
+        MechanicalAssemblerManager.getInstance().addAssembly(new ItemStack(ModBlocks.rollerElectric), new RecipeIngredient("wireCopper", 5), "rodSteel", "blockIron", "piston");
     }
 }

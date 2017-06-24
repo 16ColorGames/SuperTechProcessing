@@ -15,5 +15,6 @@ public class UIDs {
 
     public static String ELECTRIC_ROLLER = SuperTechProcessingMod.MODID + ".electricRoller";
     public static String ELECTRIC_EXTRUDER = SuperTechProcessingMod.MODID + ".electricExtruder";
+    public static String MECHANICAL_ASSEMBLER = SuperTechProcessingMod.MODID + ".mechanicalAssembler";
 
 }

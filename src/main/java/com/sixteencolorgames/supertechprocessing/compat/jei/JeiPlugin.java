@@ -6,6 +6,7 @@
 package com.sixteencolorgames.supertechprocessing.compat.jei;
 
 import com.sixteencolorgames.supertechprocessing.compat.jei.extruder.ExtruderRecipeCategory;
+import com.sixteencolorgames.supertechprocessing.compat.jei.mechanicalAssembler.MechanicalAssemblerRecipeCategory;
 import com.sixteencolorgames.supertechprocessing.compat.jei.roller.RollerRecipeCategory;
 import mezz.jei.api.BlankModPlugin;
 import mezz.jei.api.IModRegistry;
@@ -22,6 +23,7 @@ public class JeiPlugin extends BlankModPlugin {
     public void register(IModRegistry registry) {
         RollerRecipeCategory.init(registry);
         ExtruderRecipeCategory.init(registry);
+        MechanicalAssemblerRecipeCategory.init(registry);
     }
 
 }
