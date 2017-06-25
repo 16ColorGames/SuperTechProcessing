@@ -16,12 +16,12 @@ import mezz.jei.util.Log;
  *
  * @author oa10712
  */
-public class ExtruderRecipeHandler implements IRecipeHandler<ExtruderRecipe> {
+public class ExtruderRecipeHandler implements IRecipeHandler<ExtruderJEIRecipe> {
 
     @Override
-    public Class<ExtruderRecipe> getRecipeClass() {
+    public Class<ExtruderJEIRecipe> getRecipeClass() {
         // TODO Auto-generated method stub
-        return ExtruderRecipe.class;
+        return ExtruderJEIRecipe.class;
     }
 
     @Override
@@ -32,18 +32,18 @@ public class ExtruderRecipeHandler implements IRecipeHandler<ExtruderRecipe> {
 
     @Nonnull
     @Override
-    public String getRecipeCategoryUid(@Nonnull ExtruderRecipe recipe) {
+    public String getRecipeCategoryUid(@Nonnull ExtruderJEIRecipe recipe) {
         return UIDs.ELECTRIC_EXTRUDER;
     }
 
     @Override
     @Nonnull
-    public IRecipeWrapper getRecipeWrapper(@Nonnull ExtruderRecipe recipe) {
+    public IRecipeWrapper getRecipeWrapper(@Nonnull ExtruderJEIRecipe recipe) {
         return recipe;
     }
 
     @Override
-    public boolean isRecipeValid(@Nonnull ExtruderRecipe recipe) {
+    public boolean isRecipeValid(@Nonnull ExtruderJEIRecipe recipe) {
         if (recipe.getInputs().isEmpty()) {
             String recipeInfo = ErrorUtil.getInfoFromRecipe(recipe, this);
             Log.error("Recipe has no inputs. {}", recipeInfo);

@@ -5,7 +5,7 @@
  */
 package com.sixteencolorgames.supertechprocessing.compat.CraftTweaker;
 
-import com.sixteencolorgames.supertechprocessing.compat.jei.roller.RollerRecipe;
+import com.sixteencolorgames.supertechprocessing.compat.jei.roller.RollerJEIRecipe;
 import com.sixteencolorgames.supertechprocessing.crafting.RollerManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +66,7 @@ public class AddRolling implements IUndoableAction {
         if (toObject instanceof String) {
             ores = OreDictionary.getOres((String) toObject);
         }
-        RollerRecipe rec = new RollerRecipe(ores, toStack);
+        RollerJEIRecipe rec = new RollerJEIRecipe(ores, toStack);
         MineTweakerAPI.getIjeiRecipeRegistry().addRecipe(rec);
     }
 

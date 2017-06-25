@@ -23,14 +23,14 @@ import net.minecraft.util.EnumFacing;
  * @author oa10712
  */
 public class TileEntityMechanicalAssembler extends TileEntityPoweredBase {
-
+    
     public static final int WIRE_SLOT = 0, CIRCUIT_SLOT = 1, BASE_SLOT = 2, OUTPUT_SLOT = 10;
     private static final int[] SLOTS_TOP = new int[]{WIRE_SLOT};
     private static final int[] SLOTS_BOTTOM = new int[]{OUTPUT_SLOT};
     private static final int[] SLOTS_SIDES = new int[]{OUTPUT_SLOT};
     private int cookEnergy;
     private int totalCookEnergy;
-
+    
     public TileEntityMechanicalAssembler() {
         super("mechanical_assembler", 40, 32000);
         itemStacks = new ItemStack[11];
@@ -45,48 +45,48 @@ public class TileEntityMechanicalAssembler extends TileEntityPoweredBase {
         boolean flag = stack != null && stack.isItemEqual(itemStacks[index])
                 && ItemStack.areItemStackTagsEqual(stack, itemStacks[index]);
         itemStacks[index] = stack;
-
+        
         if (stack != null && stack.stackSize > this.getInventoryStackLimit()) {
             stack.stackSize = this.getInventoryStackLimit();
         }
-
+        
         if (index == 0 && !flag) {
             this.totalCookEnergy = this.getTotalCookEnergy(stack);
             this.cookEnergy = 0;
             this.markDirty();
         }
     }
-
+    
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
         NBTTagList nbttaglist = compound.getTagList("Items", 10);
         itemStacks = new ItemStack[this.getSizeInventory()];
-
+        
         for (int i = 0; i < nbttaglist.tagCount(); ++i) {
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
             int j = nbttagcompound.getByte("Slot");
-
+            
             if (j >= 0 && j < itemStacks.length) {
                 itemStacks[j] = ItemStack.loadItemStackFromNBT(nbttagcompound);
             }
         }
-
+        
         this.cookEnergy = compound.getInteger("CookEnergy");
         this.totalCookEnergy = compound.getInteger("CookEnergyTotal");
-
+        
         if (compound.hasKey("CustomName", 8)) {
             this.customName = compound.getString("CustomName");
         }
     }
-
+    
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setInteger("CookEnergy", this.cookEnergy);
         compound.setInteger("CookEnergyTotal", this.totalCookEnergy);
         NBTTagList nbttaglist = new NBTTagList();
-
+        
         for (int i = 0; i < itemStacks.length; ++i) {
             if (itemStacks[i] != null) {
                 NBTTagCompound nbttagcompound = new NBTTagCompound();
@@ -95,13 +95,13 @@ public class TileEntityMechanicalAssembler extends TileEntityPoweredBase {
                 nbttaglist.appendTag(nbttagcompound);
             }
         }
-
+        
         compound.setTag("Items", nbttaglist);
-
+        
         if (this.hasCustomName()) {
             compound.setString("CustomName", this.customName);
         }
-
+        
         return compound;
     }
 
@@ -134,7 +134,7 @@ public class TileEntityMechanicalAssembler extends TileEntityPoweredBase {
 	 * Int - time
      */
     public int getTotalCookEnergy(@Nullable ItemStack stack) {
-        return MechanicalAssemblerManager.getInstance().getTime(stack);
+        return MechanicalAssemblerManager.getInstance().getEnergy(itemStacks);
     }
 
     /**
@@ -192,7 +192,7 @@ public class TileEntityMechanicalAssembler extends TileEntityPoweredBase {
         }
         return false;
     }
-
+    
     @Override
     public int[] getSlotsForFace(EnumFacing side) {
         return side == EnumFacing.DOWN ? SLOTS_BOTTOM : (side == EnumFacing.UP ? SLOTS_TOP : SLOTS_SIDES);
@@ -206,27 +206,27 @@ public class TileEntityMechanicalAssembler extends TileEntityPoweredBase {
     public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
         if (direction == EnumFacing.DOWN && index == 1) {
             Item item = stack.getItem();
-
+            
             if (item != Items.WATER_BUCKET && item != Items.BUCKET) {
                 return false;
             }
         }
-
+        
         return true;
     }
-
+    
     @Override
     public String getGuiID() {
         return "minecraft:furnace";
     }
-
+    
     @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
         return new ContainerMechanicalAssembler(playerInventory, this);
     }
-
+    
     public final static int ENERGY = 0, MAX_ENERGY = 1, COOK_TIME = 2, TOTAL_COOK_TIME = 3;
-
+    
     @Override
     public int getField(int id) {
         switch (id) {
@@ -242,7 +242,7 @@ public class TileEntityMechanicalAssembler extends TileEntityPoweredBase {
                 return 0;
         }
     }
-
+    
     @Override
     public void setField(int id, int value) {
         switch (id) {
@@ -258,19 +258,19 @@ public class TileEntityMechanicalAssembler extends TileEntityPoweredBase {
                 this.totalCookEnergy = value;
         }
     }
-
+    
     @Override
     public int getFieldCount() {
         return 4;
     }
-
+    
     net.minecraftforge.items.IItemHandler handlerTop = new net.minecraftforge.items.wrapper.SidedInvWrapper(this,
             net.minecraft.util.EnumFacing.UP);
     net.minecraftforge.items.IItemHandler handlerBottom = new net.minecraftforge.items.wrapper.SidedInvWrapper(this,
             net.minecraft.util.EnumFacing.DOWN);
     net.minecraftforge.items.IItemHandler handlerSide = new net.minecraftforge.items.wrapper.SidedInvWrapper(this,
             net.minecraft.util.EnumFacing.WEST);
-
+    
     @SuppressWarnings("unchecked")
     @Override
     public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T> capability,
@@ -287,5 +287,5 @@ public class TileEntityMechanicalAssembler extends TileEntityPoweredBase {
         }
         return super.getCapability(capability, facing);
     }
-
+    
 }

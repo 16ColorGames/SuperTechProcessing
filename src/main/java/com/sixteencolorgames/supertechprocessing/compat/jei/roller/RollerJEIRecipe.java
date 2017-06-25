@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sixteencolorgames.supertechprocessing.compat.jei.extruder;
+package com.sixteencolorgames.supertechprocessing.compat.jei.roller;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,14 +16,14 @@ import net.minecraft.item.ItemStack;
  *
  * @author oa10712
  */
-public class ExtruderRecipe extends BlankRecipeWrapper {
+public class RollerJEIRecipe extends BlankRecipeWrapper {
 
     @Nonnull
     private final List<List<ItemStack>> input;
     @Nonnull
     private final List<ItemStack> outputs;
 
-    public ExtruderRecipe(@Nonnull List<ItemStack> input, @Nonnull ItemStack output) {
+    public RollerJEIRecipe(@Nonnull List<ItemStack> input, @Nonnull ItemStack output) {
         this.input = Collections.singletonList(input);
         this.outputs = Collections.singletonList(output);
     }

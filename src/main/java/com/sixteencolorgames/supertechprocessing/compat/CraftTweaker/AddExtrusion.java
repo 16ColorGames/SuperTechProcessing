@@ -5,7 +5,7 @@
  */
 package com.sixteencolorgames.supertechprocessing.compat.CraftTweaker;
 
-import com.sixteencolorgames.supertechprocessing.compat.jei.extruder.ExtruderRecipe;
+import com.sixteencolorgames.supertechprocessing.compat.jei.extruder.ExtruderJEIRecipe;
 import com.sixteencolorgames.supertechprocessing.crafting.ExtruderManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +66,7 @@ public class AddExtrusion implements IUndoableAction {
         if (toObject instanceof String) {
             ores = OreDictionary.getOres((String) toObject);
         }
-        ExtruderRecipe rec = new ExtruderRecipe(ores, toStack);
+        ExtruderJEIRecipe rec = new ExtruderJEIRecipe(ores, toStack);
         MineTweakerAPI.getIjeiRecipeRegistry().addRecipe(rec);
     }
 

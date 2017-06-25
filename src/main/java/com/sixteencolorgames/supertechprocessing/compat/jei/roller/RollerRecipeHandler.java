@@ -16,12 +16,12 @@ import mezz.jei.util.Log;
  *
  * @author oa10712
  */
-public class RollerRecipeHandler implements IRecipeHandler<RollerRecipe> {
+public class RollerRecipeHandler implements IRecipeHandler<RollerJEIRecipe> {
 
     @Override
-    public Class<RollerRecipe> getRecipeClass() {
+    public Class<RollerJEIRecipe> getRecipeClass() {
         // TODO Auto-generated method stub
-        return RollerRecipe.class;
+        return RollerJEIRecipe.class;
     }
 
     @Override
@@ -32,18 +32,18 @@ public class RollerRecipeHandler implements IRecipeHandler<RollerRecipe> {
 
     @Nonnull
     @Override
-    public String getRecipeCategoryUid(@Nonnull RollerRecipe recipe) {
+    public String getRecipeCategoryUid(@Nonnull RollerJEIRecipe recipe) {
         return UIDs.ELECTRIC_ROLLER;
     }
 
     @Override
     @Nonnull
-    public IRecipeWrapper getRecipeWrapper(@Nonnull RollerRecipe recipe) {
+    public IRecipeWrapper getRecipeWrapper(@Nonnull RollerJEIRecipe recipe) {
         return recipe;
     }
 
     @Override
-    public boolean isRecipeValid(@Nonnull RollerRecipe recipe) {
+    public boolean isRecipeValid(@Nonnull RollerJEIRecipe recipe) {
         if (recipe.getInputs().isEmpty()) {
             String recipeInfo = ErrorUtil.getInfoFromRecipe(recipe, this);
             Log.error("Recipe has no inputs. {}", recipeInfo);

@@ -16,12 +16,12 @@ import mezz.jei.util.Log;
  *
  * @author oa10712
  */
-public class MechanicalAssemblerRecipeHandler implements IRecipeHandler<MechanicalAssemblerRecipe> {
+public class MechanicalAssemblerRecipeHandler implements IRecipeHandler<MechanicalAssemblerJEIRecipe> {
 
     @Override
-    public Class<MechanicalAssemblerRecipe> getRecipeClass() {
+    public Class<MechanicalAssemblerJEIRecipe> getRecipeClass() {
         // TODO Auto-generated method stub
-        return MechanicalAssemblerRecipe.class;
+        return MechanicalAssemblerJEIRecipe.class;
     }
 
     @Override
@@ -32,18 +32,18 @@ public class MechanicalAssemblerRecipeHandler implements IRecipeHandler<Mechanic
 
     @Nonnull
     @Override
-    public String getRecipeCategoryUid(@Nonnull MechanicalAssemblerRecipe recipe) {
+    public String getRecipeCategoryUid(@Nonnull MechanicalAssemblerJEIRecipe recipe) {
         return UIDs.MECHANICAL_ASSEMBLER;
     }
 
     @Override
     @Nonnull
-    public IRecipeWrapper getRecipeWrapper(@Nonnull MechanicalAssemblerRecipe recipe) {
+    public IRecipeWrapper getRecipeWrapper(@Nonnull MechanicalAssemblerJEIRecipe recipe) {
         return recipe;
     }
 
     @Override
-    public boolean isRecipeValid(@Nonnull MechanicalAssemblerRecipe recipe) {
+    public boolean isRecipeValid(@Nonnull MechanicalAssemblerJEIRecipe recipe) {
         if (recipe.getInputs().isEmpty()) {
             String recipeInfo = ErrorUtil.getInfoFromRecipe(recipe, this);
             Log.error("Recipe has no inputs. {}", recipeInfo);

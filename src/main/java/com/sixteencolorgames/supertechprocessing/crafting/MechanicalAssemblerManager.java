@@ -18,99 +18,49 @@ import net.minecraft.item.ItemStack;
  */
 public class MechanicalAssemblerManager {
 
-    HashMap<List<RecipeIngredient>, ItemStack> assemblies = new HashMap();
+    //HashMap<List<RecipeIngredient>, ItemStack> assemblies = new HashMap();
+    List<MechanicalAssemblerRecipe> recipes = new ArrayList();
     private static final MechanicalAssemblerManager INSTANCE = new MechanicalAssemblerManager();
 
     public static MechanicalAssemblerManager getInstance() {
         return INSTANCE;
     }
 
-    public Map<List<RecipeIngredient>, ItemStack> getRecipies() {
-        return assemblies;
+    public List<MechanicalAssemblerRecipe> getRecipies() {
+        return recipes;
     }
 
     public ItemStack getResult(ItemStack[] in) {
-        for (Map.Entry<List<RecipeIngredient>, ItemStack> entry : assemblies.entrySet()) {
-            boolean validRecipe = true;
-            for (RecipeIngredient ing : entry.getKey()) {
-                boolean validIngredient = false;
-                for (ItemStack stack : in) {
-                    if (ing.matches(stack)) {
-                        validIngredient = true;
-                        break;
-                    }
-                }
-                if (!validIngredient) {
-                    validRecipe = false;
-                    break;
-                }
-            }
-            if (validRecipe) {
-                return entry.getValue();
+        for (MechanicalAssemblerRecipe rec : recipes) {
+            if (rec.matches(in)) {
+                return rec.getOutput();
             }
         }
         return null;
     }
 
-    public int getTime(ItemStack stack) {
-        int time = 100;
+    public int getEnergy(ItemStack[] itemStacks) {
+        int time = 0;
+        List<RecipeIngredient> list = null;
+        for (MechanicalAssemblerRecipe rec : recipes) {
+            if (rec.matches(itemStacks)) {
+                return rec.getPower();
+            }
+        }
         return time;
     }
 
-    public boolean addAssembly(List<RecipeIngredient> in, ItemStack out) {
-        assemblies.put(in, out);
+    public boolean addAssembly(MechanicalAssemblerRecipe add) {
+        recipes.add(add);
         return true;
     }
 
-    public boolean addAssembly(ItemStack out, Object... in) {
-        List<RecipeIngredient> inputs = new ArrayList();
-        for (Object o : in) {
-            if (o instanceof RecipeIngredient) {
-                inputs.add((RecipeIngredient) o);
-                continue;
-            }
-            if (o instanceof String) {
-                inputs.add(new RecipeIngredient((String) o));
-                continue;
-            }
-        }
-        return addAssembly(inputs, out);
-    }
-
     public ItemStack[] getProcessed(ItemStack[] itemStacks) {
-        List<RecipeIngredient> list = null;
-        for (Map.Entry<List<RecipeIngredient>, ItemStack> entry : assemblies.entrySet()) {
-            boolean validRecipe = true;
-            for (RecipeIngredient ing : entry.getKey()) {
-                boolean validIngredient = false;
-                for (ItemStack stack : itemStacks) {
-                    if (ing.matches(stack)) {
-                        validIngredient = true;
-                        break;
-                    }
-                }
-                if (!validIngredient) {
-                    validRecipe = false;
-                    break;
-                }
-            }
-            if (validRecipe) {
-                list = entry.getKey();
+        for (MechanicalAssemblerRecipe rec : recipes) {
+            if (rec.matches(itemStacks)) {
+                return rec.processStacks(itemStacks);
             }
         }
-
-        //we found the correct recipe, now process it
-        if (list != null) {
-            for (RecipeIngredient ing : list) {//for each ingredient
-                for (int i = 0; i < itemStacks.length; i++) {//loop through the supplied inputs
-                    if (ing.matches(itemStacks[i])) {//if the input is a match for the ingredient
-                        itemStacks[i].stackSize -= ing.getQuantity();
-                        break;
-                    }
-                }
-            }
-        }
-
         return itemStacks;
     }
 }

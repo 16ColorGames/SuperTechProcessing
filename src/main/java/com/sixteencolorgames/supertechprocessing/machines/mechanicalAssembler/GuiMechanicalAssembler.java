@@ -25,7 +25,7 @@ public class GuiMechanicalAssembler extends GuiBaseElectric {
         int j = (this.height - this.ySize) / 2;
 
         int l = this.getCookProgressScaled(24);
-        this.drawTexturedModalRect(i + 150, j + 70, 176, 14, l + 1, 16);
+        this.drawTexturedModalRect(i + 145, j + 60, 176, 14, l + 1, 16);
     }
 
     private int getCookProgressScaled(int pixels) {

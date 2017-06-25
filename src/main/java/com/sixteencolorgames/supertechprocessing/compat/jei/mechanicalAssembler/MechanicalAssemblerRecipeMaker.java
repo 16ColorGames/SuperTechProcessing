@@ -6,10 +6,12 @@
 package com.sixteencolorgames.supertechprocessing.compat.jei.mechanicalAssembler;
 
 import com.sixteencolorgames.supertechprocessing.crafting.MechanicalAssemblerManager;
+import com.sixteencolorgames.supertechprocessing.crafting.MechanicalAssemblerRecipe;
 import com.sixteencolorgames.supertechtweaks.crafting.RecipeIngredient;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import javax.annotation.Nonnull;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.recipe.IStackHelper;
@@ -20,25 +22,21 @@ import net.minecraft.item.ItemStack;
  * @author oa10712
  */
 public class MechanicalAssemblerRecipeMaker {
-
+    
     @Nonnull
-    public static List<MechanicalAssemblerRecipe> getRecipes(IJeiHelpers helpers) {
+    public static List<MechanicalAssemblerJEIRecipe> getRecipes(IJeiHelpers helpers) {
         IStackHelper stackHelper = helpers.getStackHelper();
         MechanicalAssemblerManager furnaceRecipes = MechanicalAssemblerManager.getInstance();
-        Map<List<RecipeIngredient>, ItemStack> smeltingMap = furnaceRecipes.getRecipies();
-
-        List<MechanicalAssemblerRecipe> recipes = new ArrayList();
-
-        smeltingMap.entrySet().stream().map((itemStackItemStackEntry) -> {
-            ItemStack output = itemStackItemStackEntry.getValue();
-            List<RecipeIngredient> inputs = itemStackItemStackEntry.getKey();
-            MechanicalAssemblerRecipe recipe = new MechanicalAssemblerRecipe(inputs, output);
-            return recipe;
-        }).forEachOrdered((recipe) -> {
-            recipes.add(recipe);
-        });
-
+        List<MechanicalAssemblerRecipe> recipiesList = furnaceRecipes.getRecipies();
+        
+        List<MechanicalAssemblerJEIRecipe> recipes = new ArrayList();
+        
+        for (MechanicalAssemblerRecipe rec : recipiesList) {
+            MechanicalAssemblerJEIRecipe newRec = new MechanicalAssemblerJEIRecipe(rec.getInputList(), rec.getOutput());
+            recipes.add(newRec);
+        }
+        
         return recipes;
     }
-
+    
 }

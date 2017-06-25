@@ -21,17 +21,17 @@ import net.minecraft.item.ItemStack;
 public class ExtruderRecipeMaker {
 
     @Nonnull
-    public static List<ExtruderRecipe> getRecipes(IJeiHelpers helpers) {
+    public static List<ExtruderJEIRecipe> getRecipes(IJeiHelpers helpers) {
         IStackHelper stackHelper = helpers.getStackHelper();
         ExtruderManager furnaceRecipes = ExtruderManager.instance();
         Map<List<ItemStack>, ItemStack> smeltingMap = furnaceRecipes.getList();
 
-        List<ExtruderRecipe> recipes = new ArrayList();
+        List<ExtruderJEIRecipe> recipes = new ArrayList();
 
         smeltingMap.entrySet().stream().map((itemStackItemStackEntry) -> {
             ItemStack output = itemStackItemStackEntry.getValue();
             List<ItemStack> inputs = itemStackItemStackEntry.getKey();
-            ExtruderRecipe recipe = new ExtruderRecipe(inputs, output);
+            ExtruderJEIRecipe recipe = new ExtruderJEIRecipe(inputs, output);
             return recipe;
         }).forEachOrdered((recipe) -> {
             recipes.add(recipe);

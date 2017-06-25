@@ -21,17 +21,17 @@ import net.minecraft.item.ItemStack;
 public class RollerRecipeMaker {
 
     @Nonnull
-    public static List<RollerRecipe> getRecipes(IJeiHelpers helpers) {
+    public static List<RollerJEIRecipe> getRecipes(IJeiHelpers helpers) {
         IStackHelper stackHelper = helpers.getStackHelper();
         RollerManager furnaceRecipes = RollerManager.instance();
         Map<List<ItemStack>, ItemStack> smeltingMap = furnaceRecipes.getList();
 
-        List<RollerRecipe> recipes = new ArrayList();
+        List<RollerJEIRecipe> recipes = new ArrayList();
 
         smeltingMap.entrySet().stream().map((itemStackItemStackEntry) -> {
             ItemStack output = itemStackItemStackEntry.getValue();
             List<ItemStack> inputs = itemStackItemStackEntry.getKey();
-            RollerRecipe recipe = new RollerRecipe(inputs, output);
+            RollerJEIRecipe recipe = new RollerJEIRecipe(inputs, output);
             return recipe;
         }).forEachOrdered((recipe) -> {
             recipes.add(recipe);
