@@ -68,6 +68,7 @@ public class AddExtrusion implements IUndoableAction {
         }
         ExtruderJEIRecipe rec = new ExtruderJEIRecipe(ores, toStack);
         MineTweakerAPI.getIjeiRecipeRegistry().addRecipe(rec);
+        MineTweakerAPI.getIjeiRecipeRegistry().reloadItemList();
     }
 
 }

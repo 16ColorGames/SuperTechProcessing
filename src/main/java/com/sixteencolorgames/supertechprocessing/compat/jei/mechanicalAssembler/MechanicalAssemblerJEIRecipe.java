@@ -56,7 +56,18 @@ public class MechanicalAssemblerJEIRecipe extends BlankRecipeWrapper {
 
     @Override
     public void getIngredients(IIngredients ingredients) {
-        //ingredients.setInputLists(ItemStack.class, input);
+        List<List<ItemStack>> in = new ArrayList();
+        if (!wire.isEmpty() && wire.get(0).getItem() != null) {
+            in.add(wire);
+        }
+        if (!circuit.isEmpty() && circuit.get(0).getItem() != null) {
+            in.add(circuit);
+        }
+        if (!base.isEmpty()&& base.get(0).getItem() != null) {
+            in.add(base);
+        }
+        in.addAll(input);
+        ingredients.setInputLists(ItemStack.class, in);
         ingredients.setOutputs(ItemStack.class, outputs);
     }
 

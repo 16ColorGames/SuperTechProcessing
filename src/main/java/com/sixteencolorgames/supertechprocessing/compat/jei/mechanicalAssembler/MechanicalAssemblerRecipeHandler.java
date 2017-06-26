@@ -20,13 +20,11 @@ public class MechanicalAssemblerRecipeHandler implements IRecipeHandler<Mechanic
 
     @Override
     public Class<MechanicalAssemblerJEIRecipe> getRecipeClass() {
-        // TODO Auto-generated method stub
         return MechanicalAssemblerJEIRecipe.class;
     }
 
     @Override
     public String getRecipeCategoryUid() {
-        // TODO Auto-generated method stub
         return UIDs.MECHANICAL_ASSEMBLER;
     }
 

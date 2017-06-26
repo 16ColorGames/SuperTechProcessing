@@ -7,15 +7,11 @@ package com.sixteencolorgames.supertechprocessing.compat.jei.mechanicalAssembler
 
 import com.sixteencolorgames.supertechprocessing.crafting.MechanicalAssemblerManager;
 import com.sixteencolorgames.supertechprocessing.crafting.MechanicalAssemblerRecipe;
-import com.sixteencolorgames.supertechtweaks.crafting.RecipeIngredient;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
 import javax.annotation.Nonnull;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.recipe.IStackHelper;
-import net.minecraft.item.ItemStack;
 
 /**
  *

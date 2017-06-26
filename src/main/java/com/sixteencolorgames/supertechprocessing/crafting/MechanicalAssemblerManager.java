@@ -21,15 +21,15 @@ public class MechanicalAssemblerManager {
     //HashMap<List<RecipeIngredient>, ItemStack> assemblies = new HashMap();
     List<MechanicalAssemblerRecipe> recipes = new ArrayList();
     private static final MechanicalAssemblerManager INSTANCE = new MechanicalAssemblerManager();
-
+    
     public static MechanicalAssemblerManager getInstance() {
         return INSTANCE;
     }
-
+    
     public List<MechanicalAssemblerRecipe> getRecipies() {
         return recipes;
     }
-
+    
     public ItemStack getResult(ItemStack[] in) {
         for (MechanicalAssemblerRecipe rec : recipes) {
             if (rec.matches(in)) {
@@ -38,7 +38,7 @@ public class MechanicalAssemblerManager {
         }
         return null;
     }
-
+    
     public int getEnergy(ItemStack[] itemStacks) {
         int time = 0;
         List<RecipeIngredient> list = null;
@@ -49,12 +49,16 @@ public class MechanicalAssemblerManager {
         }
         return time;
     }
-
+    
     public boolean addAssembly(MechanicalAssemblerRecipe add) {
         recipes.add(add);
         return true;
     }
-
+    
+    public void removeAssembly(MechanicalAssemblerRecipe rem) {
+        recipes.remove(rem);
+    }
+    
     public ItemStack[] getProcessed(ItemStack[] itemStacks) {
         for (MechanicalAssemblerRecipe rec : recipes) {
             if (rec.matches(itemStacks)) {

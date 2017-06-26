@@ -12,6 +12,7 @@ import com.sixteencolorgames.supertechprocessing.crafting.RollerManager;
 import com.sixteencolorgames.supertechtweaks.ModItems;
 import com.sixteencolorgames.supertechtweaks.compat.crafttweaker.CraftTweaker;
 import com.sixteencolorgames.supertechtweaks.compat.crafttweaker.IMaterialListener;
+import com.sixteencolorgames.supertechtweaks.crafting.RecipeIngredient;
 import com.sixteencolorgames.supertechtweaks.enums.Material;
 import static com.sixteencolorgames.supertechtweaks.items.ItemMaterialObject.FOIL;
 import static com.sixteencolorgames.supertechtweaks.items.ItemMaterialObject.PLATE;
@@ -21,7 +22,6 @@ import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
 import net.minecraft.item.ItemStack;
-import stanhebben.zenscript.annotations.NotNull;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -57,6 +57,22 @@ public class MineTweaker implements IMaterialListener {
         }
     }
 
+    @ZenMethod
+    public static void addAssembly(IItemStack output, IIngredient wire, IIngredient circuit, IIngredient base, IIngredient... other) {
+        RecipeIngredient[] misc = new RecipeIngredient[other.length];
+        for (int i = 0; i < other.length; i++) {
+            RecipeIngredient toRecipeIngredient = toRecipeIngredient(other[i]);
+            misc[i] = toRecipeIngredient;
+        }
+        AddAssembly action = new AddAssembly(
+                toStack(output),
+                toRecipeIngredient(wire),
+                toRecipeIngredient(circuit),
+                toRecipeIngredient(base),
+                misc);
+        MineTweakerAPI.apply(action);
+    }
+
     @Override
     public void addMaterial(Material mtrl) {
         ExtruderManager.instance().addExtrusion("rod" + mtrl.getName(), new ItemStack(ModItems.itemMaterialObject, 1, mtrl.ordinal() + WIRE), 200);
@@ -68,6 +84,19 @@ public class MineTweaker implements IMaterialListener {
     @Override
     public void removeMaterial(String string) {
         //TODO handle this
+    }
+
+    public static RecipeIngredient toRecipeIngredient(IIngredient ing) {
+        RecipeIngredient ret;
+        Object toObject = toObject(ing);
+        if (toObject instanceof String) {
+            ret = new RecipeIngredient((String) toObject, ing.getAmount());
+        } else if (toObject instanceof ItemStack) {
+            ret = new RecipeIngredient((ItemStack) toObject, ing.getAmount());
+        } else {
+            ret = new RecipeIngredient();
+        }
+        return ret;
     }
 
 }
