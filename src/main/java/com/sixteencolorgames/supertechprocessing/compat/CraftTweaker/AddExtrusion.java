@@ -67,8 +67,7 @@ public class AddExtrusion implements IUndoableAction {
             ores = OreDictionary.getOres((String) toObject);
         }
         ExtruderJEIRecipe rec = new ExtruderJEIRecipe(ores, toStack);
-        MineTweakerAPI.getIjeiRecipeRegistry().addRecipe(rec);
-        MineTweakerAPI.getIjeiRecipeRegistry().reloadItemList();
+        MineTweakerAPI.ijeiRecipeRegistry.addRecipe(rec);
     }
 
 }

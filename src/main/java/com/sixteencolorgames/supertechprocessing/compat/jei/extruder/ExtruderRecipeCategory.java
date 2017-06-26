@@ -65,7 +65,7 @@ public class ExtruderRecipeCategory extends BlankRecipeCategory {
         IDrawableStatic arrowDrawable = guiHelper.createDrawable(backgroundLocation, 176, 14, 24, 17);
         this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, IDrawableAnimated.StartDirection.LEFT, false);
 
-        background = guiHelper.createDrawable(backgroundLocation, 55, 16, 82, 54);
+        background = guiHelper.createDrawable(backgroundLocation, 55, 30, 82, 26);
         localizedName = Translator.translateToLocal("gui.jei.category.extruder");
     }
 
@@ -89,15 +89,15 @@ public class ExtruderRecipeCategory extends BlankRecipeCategory {
 
     @Override
     public void drawAnimations(@Nonnull Minecraft minecraft) {
-        arrow.draw(minecraft, 24, 18);
+        arrow.draw(minecraft, 20, 4);
     }
 
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients) {
         IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
 
-        guiItemStacks.init(inputSlot, true, 0, 18);
-        guiItemStacks.init(outputSlot, false, 60, 18);
+        guiItemStacks.init(inputSlot, true, 0, 4);
+        guiItemStacks.init(outputSlot, false, 60, 4);
 
         guiItemStacks.setFromRecipe(inputSlot, recipeWrapper.getInputs());
         guiItemStacks.setFromRecipe(outputSlot, recipeWrapper.getOutputs());
