@@ -42,6 +42,7 @@ public class ExtruderRecipeCategory extends BlankRecipeCategory {
         IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
         registry.addRecipeCategories(new ExtruderRecipeCategory(guiHelper));
         registry.addRecipeHandlers(new ExtruderRecipeHandler());
+        
 
         registry.addRecipes(ExtruderRecipeMaker.getRecipes(jeiHelpers));
         registry.addRecipeClickArea(GuiElectricExtruder.class, 80, 38, 20, 12, UIDs.ELECTRIC_EXTRUDER);

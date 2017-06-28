@@ -19,45 +19,16 @@ import net.minecraftforge.oredict.OreDictionary;
  * @author oa10712
  */
 public class AddExtrusion implements IUndoableAction {
-
+    
+    ExtruderJEIRecipe rec;
     private final ItemStack toStack;
     private final Object toObject;
     private final int time;
-
+    
     AddExtrusion(ItemStack toStack, Object toObject, int time) {
         this.toStack = toStack;
         this.toObject = toObject;
         this.time = time;
-    }
-
-    @Override
-    public void undo() {
-        ExtruderManager.instance().removeExtrusion(toObject);
-    }
-
-    @Override
-    public String describe() {
-        return "Adding new extrusion: ";
-    }
-
-    @Override
-    public String describeUndo() {
-        return "Removing new extrusion: ";
-    }
-
-    @Override
-    public Object getOverrideKey() {
-        return null;
-    }
-
-    @Override
-    public boolean canUndo() {
-        return true;
-    }
-
-    @Override
-    public void apply() {
-        ExtruderManager.instance().addExtrusion(toObject, toStack, time);
         List<ItemStack> ores = null;
         if (toObject instanceof ItemStack) {
             ores = new ArrayList();
@@ -66,8 +37,39 @@ public class AddExtrusion implements IUndoableAction {
         if (toObject instanceof String) {
             ores = OreDictionary.getOres((String) toObject);
         }
-        ExtruderJEIRecipe rec = new ExtruderJEIRecipe(ores, toStack);
+        rec = new ExtruderJEIRecipe(ores, toStack);
+    }
+    
+    @Override
+    public void undo() {
+        ExtruderManager.instance().removeExtrusion(toObject);
+        MineTweakerAPI.ijeiRecipeRegistry.removeRecipe(rec);
+    }
+    
+    @Override
+    public String describe() {
+        return "Adding new extrusion: ";
+    }
+    
+    @Override
+    public String describeUndo() {
+        return "Removing new extrusion: ";
+    }
+    
+    @Override
+    public Object getOverrideKey() {
+        return null;
+    }
+    
+    @Override
+    public boolean canUndo() {
+        return true;
+    }
+    
+    @Override
+    public void apply() {
+        ExtruderManager.instance().addExtrusion(toObject, toStack, time);
         MineTweakerAPI.ijeiRecipeRegistry.addRecipe(rec);
     }
-
+    
 }

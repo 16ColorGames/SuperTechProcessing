@@ -29,7 +29,7 @@ public class Recipes {
             RollerManager.instance().addRolling("ingot" + ore.getName(), new ItemStack(ModItems.itemMaterialObject, 1, ore.ordinal() + PLATE), 200);
             RollerManager.instance().addRolling("plate" + ore.getName(), new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + FOIL), 200);
         });
-        MechanicalAssemblerRecipe rec = new MechanicalAssemblerRecipe(new ItemStack(ModBlocks.rollerElectric), new RecipeIngredient("wireCopper", 5), new RecipeIngredient(), new RecipeIngredient("blockIron"), new RecipeIngredient(new ItemStack(Blocks.PISTON, 2, 0)));
+        MechanicalAssemblerRecipe rec = new MechanicalAssemblerRecipe(new ItemStack(ModBlocks.rollerElectric), new RecipeIngredient("wireCopper", 5), new RecipeIngredient("circuitBasic"), new RecipeIngredient("casingBasic"), new RecipeIngredient(new ItemStack(Blocks.PISTON, 2, 0)));
 
         MechanicalAssemblerManager.getInstance().addAssembly(rec);
     }

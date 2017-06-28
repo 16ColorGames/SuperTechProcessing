@@ -19,15 +19,18 @@ import net.minecraft.item.ItemStack;
  */
 public class AddAssembly implements IUndoableAction {
 
+    MechanicalAssemblerJEIRecipe jei;
     private final MechanicalAssemblerRecipe recipe;
 
     AddAssembly(ItemStack output, RecipeIngredient wire, RecipeIngredient circuit, RecipeIngredient base, RecipeIngredient... other) {
         recipe = new MechanicalAssemblerRecipe(output, wire, circuit, base, other);
+        jei = new MechanicalAssemblerJEIRecipe(recipe.getInputList(), recipe.getOutput());
     }
 
     @Override
     public void undo() {
         MechanicalAssemblerManager.getInstance().removeAssembly(recipe);
+        MineTweakerAPI.ijeiRecipeRegistry.removeRecipe(jei);
     }
 
     @Override
@@ -53,8 +56,8 @@ public class AddAssembly implements IUndoableAction {
     @Override
     public void apply() {
         MechanicalAssemblerManager.getInstance().addAssembly(recipe);
-        MineTweakerAPI.getIjeiRecipeRegistry().addRecipe(recipe);
-        System.out.println("Recipe Added: "+recipe.getOutput().getDisplayName());
+        MineTweakerAPI.getIjeiRecipeRegistry().addRecipe(jei);
+        System.out.println("Recipe Added: " + recipe.getOutput().getDisplayName());
     }
 
 }

@@ -20,13 +20,11 @@ public class ExtruderRecipeHandler implements IRecipeHandler<ExtruderJEIRecipe> 
 
     @Override
     public Class<ExtruderJEIRecipe> getRecipeClass() {
-        // TODO Auto-generated method stub
         return ExtruderJEIRecipe.class;
     }
 
     @Override
     public String getRecipeCategoryUid() {
-        // TODO Auto-generated method stub
         return UIDs.ELECTRIC_EXTRUDER;
     }
 

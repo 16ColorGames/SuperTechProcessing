@@ -3,7 +3,7 @@
     "parent": "block/orientable",
     "textures": {
         "top": "blocks/iron_block",
-        "front": "supertechprocessing:blocks/extruder_front",
+        "front": "supertechprocessing:blocks/assembler_front",
         "side": "blocks/iron_block"
-    }  
+    }
 }
