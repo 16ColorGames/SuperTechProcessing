@@ -24,12 +24,6 @@ public class AddAssembly implements IUndoableAction {
 
     AddAssembly(ItemStack output, RecipeIngredient wire, RecipeIngredient circuit, RecipeIngredient base, RecipeIngredient... other) {
         System.out.println("Adding assembly: " + output.getDisplayName());
-        System.out.println("    " + wire.getExamples().get(0).getDisplayName() + ":" + wire.getExamples().get(0).stackSize);
-        System.out.println("    " + circuit.getExamples().get(0).getDisplayName() + ":" + circuit.getExamples().get(0).stackSize);
-        System.out.println("    " + base.getExamples().get(0).getDisplayName() + ":" + base.getExamples().get(0).stackSize);
-        for (RecipeIngredient ri : other) {
-            System.out.println("    " + ri.getExamples().get(0).getDisplayName() + ":" + ri.getExamples().get(0).stackSize);
-        }
         recipe = new MechanicalAssemblerRecipe(output, wire, circuit, base, other);
         jei = new MechanicalAssemblerJEIRecipe(recipe.getInputList(), recipe.getOutput());
     }
