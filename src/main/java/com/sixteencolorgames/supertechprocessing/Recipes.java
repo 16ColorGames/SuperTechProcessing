@@ -42,12 +42,13 @@ public class Recipes {
                 new RecipeIngredient("casingBasic"),
                 new RecipeIngredient(new ItemStack(Blocks.PISTON, 4, 0)));
         MechanicalAssemblerManager.getInstance().addAssembly(rec);
+        
         rec = new MechanicalAssemblerRecipe(
                 new ItemStack(ModBlocks.extruderElectric),
                 new RecipeIngredient("wireCopper", 5),
                 new RecipeIngredient("circuitBasic"),
                 new RecipeIngredient("casingBasic"),
-                new RecipeIngredient("heatingElement"),
+                new RecipeIngredient("heatingElement",2),
                 new RecipeIngredient(new ItemStack(Blocks.PISTON, 2, 0)));
         MechanicalAssemblerManager.getInstance().addAssembly(rec);
     }

@@ -5,7 +5,6 @@
  */
 package com.sixteencolorgames.supertechprocessing.compat.CraftTweaker;
 
-import static com.blamejared.mtlib.helpers.InputHelper.toObject;
 import static com.blamejared.mtlib.helpers.InputHelper.toStack;
 import com.sixteencolorgames.supertechprocessing.crafting.ExtruderManager;
 import com.sixteencolorgames.supertechprocessing.crafting.RollerManager;
@@ -18,9 +17,14 @@ import static com.sixteencolorgames.supertechtweaks.items.ItemMaterialObject.FOI
 import static com.sixteencolorgames.supertechtweaks.items.ItemMaterialObject.PLATE;
 import static com.sixteencolorgames.supertechtweaks.items.ItemMaterialObject.ROD;
 import static com.sixteencolorgames.supertechtweaks.items.ItemMaterialObject.WIRE;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
+import minetweaker.api.item.IngredientStack;
+import minetweaker.api.oredict.IOreDictEntry;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -44,7 +48,7 @@ public class MineTweaker implements IMaterialListener {
         if (ingredient.getAmount() < 0) {
             MineTweakerAPI.logWarning("invalid ingredient: " + ingredient + " - stack size not known");
         } else {
-            MineTweakerAPI.apply(new AddExtrusion(toStack(output), toObject(ingredient), time));
+            MineTweakerAPI.apply(new AddExtrusion(toStack(output), toRecipeIngredient(ingredient), time));
         }
     }
 
@@ -53,16 +57,18 @@ public class MineTweaker implements IMaterialListener {
         if (ingredient.getAmount() < 0) {
             MineTweakerAPI.logWarning("invalid ingredient: " + ingredient + " - stack size not known");
         } else {
-            MineTweakerAPI.apply(new AddRolling(toStack(output), toObject(ingredient), time));
+            MineTweakerAPI.apply(new AddRolling(toStack(output), toRecipeIngredient(ingredient), time));
         }
     }
 
     @ZenMethod
     public static void addAssembly(IItemStack output, IIngredient wire, IIngredient circuit, IIngredient base, IIngredient... other) {
         RecipeIngredient[] misc = new RecipeIngredient[other.length];
+        System.out.println(wire.getAmount() + ":" + toRecipeIngredient(wire).getExamples().get(0).stackSize);
         for (int i = 0; i < other.length; i++) {
             RecipeIngredient toRecipeIngredient = toRecipeIngredient(other[i]);
             misc[i] = toRecipeIngredient;
+            System.out.println(other[i].getAmount() + ":" + misc[i].getExamples().get(0).stackSize);
         }
         AddAssembly action = new AddAssembly(
                 toStack(output),
@@ -86,17 +92,21 @@ public class MineTweaker implements IMaterialListener {
         //TODO handle this
     }
 
-    public static RecipeIngredient toRecipeIngredient(IIngredient ing) {
-        RecipeIngredient ret;
-        Object toObject = toObject(ing);
-        if (toObject instanceof String) {
-            ret = new RecipeIngredient((String) toObject, ing.getAmount());
-        } else if (toObject instanceof ItemStack) {
-            ret = new RecipeIngredient((ItemStack) toObject, ing.getAmount());
-        } else {
-            ret = new RecipeIngredient();
+    public static RecipeIngredient toRecipeIngredient(IIngredient iStack) {
+        if (iStack == null) {
+            return new RecipeIngredient();
         }
-        return ret;
+        if ((iStack instanceof IOreDictEntry)) {
+            return new RecipeIngredient(((IOreDictEntry) iStack).getName(), ((IOreDictEntry) iStack).getAmount());
+        }
+        if ((iStack instanceof IItemStack)) {
+            return new RecipeIngredient(toStack((IItemStack) iStack), ((IItemStack) iStack).getAmount());
+        }
+        if ((iStack instanceof IngredientStack)) {
+            List<ItemStack> stacks = new ArrayList();
+            stacks.addAll(Arrays.asList(CraftTweaker.getItemStacks(((IngredientStack) iStack).getItems())));
+            return new RecipeIngredient(stacks, ((IngredientStack) iStack).getAmount());
+        }
+        return new RecipeIngredient();
     }
-
 }

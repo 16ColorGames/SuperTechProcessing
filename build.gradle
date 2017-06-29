@@ -97,7 +97,8 @@ dependencies {
     deobfCompile "MineTweaker3:MineTweaker3-API:+"
     runtime "MineTweaker3:MineTweaker3-MC${mc_version2}-Main:+"
     
-    deobfCompile "com.blamejared:MTLib:1.0.0.7"
+    //deobfCompile "com.blamejared:MTLib:1.0.2.12"
+    //deobfCompile "com.blamejared:mtlib:1.+"
     
     // compile against the JEI API
     deobfCompile "mezz.jei:jei_${version_minecraft}:${jei_version}:api"
