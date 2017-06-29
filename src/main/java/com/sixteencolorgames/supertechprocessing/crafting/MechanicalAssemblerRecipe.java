@@ -29,12 +29,17 @@ public class MechanicalAssemblerRecipe {
     public MechanicalAssemblerRecipe(ItemStack output, RecipeIngredient wire, RecipeIngredient circuit, RecipeIngredient base, RecipeIngredient... other) {
         this.output = output;
         this.wire = wire;
-        power += wire.getExamples().get(0).stackSize * 150;
+        power += wire.getExamples().get(0).stackSize * 200;
         this.circuit = circuit;
         power += circuit.getExamples().get(0).stackSize * 400;
 
         this.base = base;
-        power += base.getExamples().get(0).stackSize * 800;
+        power += base.getExamples().get(0).stackSize * 1000;
+
+        for (RecipeIngredient ri : other) {
+            power += ri.getExamples().get(0).stackSize * 500;
+        }
+
         misc.addAll(Arrays.asList(other));
     }
 

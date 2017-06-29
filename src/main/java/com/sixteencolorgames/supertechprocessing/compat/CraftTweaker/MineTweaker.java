@@ -64,11 +64,9 @@ public class MineTweaker implements IMaterialListener {
     @ZenMethod
     public static void addAssembly(IItemStack output, IIngredient wire, IIngredient circuit, IIngredient base, IIngredient... other) {
         RecipeIngredient[] misc = new RecipeIngredient[other.length];
-        System.out.println(wire.getAmount() + ":" + toRecipeIngredient(wire).getExamples().get(0).stackSize);
         for (int i = 0; i < other.length; i++) {
             RecipeIngredient toRecipeIngredient = toRecipeIngredient(other[i]);
             misc[i] = toRecipeIngredient;
-            System.out.println(other[i].getAmount() + ":" + misc[i].getExamples().get(0).stackSize);
         }
         AddAssembly action = new AddAssembly(
                 toStack(output),
