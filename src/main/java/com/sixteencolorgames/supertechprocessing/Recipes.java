@@ -9,7 +9,7 @@ import com.sixteencolorgames.supertechprocessing.crafting.ExtruderManager;
 import com.sixteencolorgames.supertechprocessing.crafting.MechanicalAssemblerManager;
 import com.sixteencolorgames.supertechprocessing.crafting.MechanicalAssemblerRecipe;
 import com.sixteencolorgames.supertechprocessing.crafting.RollerManager;
-import com.sixteencolorgames.supertechtweaks.ModItems;
+import com.sixteencolorgames.supertechtweaks.ModRegistry;
 import com.sixteencolorgames.supertechtweaks.crafting.RecipeIngredient;
 import com.sixteencolorgames.supertechtweaks.enums.Material;
 import static com.sixteencolorgames.supertechtweaks.items.ItemMaterialObject.*;
@@ -26,10 +26,10 @@ public class Recipes {
 
     public static void init() {
         Material.materials.forEach((ore) -> {
-            ExtruderManager.instance().addExtrusion("rod" + ore.getName(), new ItemStack(ModItems.itemMaterialObject, 1, ore.ordinal() + WIRE), 200);
-            ExtruderManager.instance().addExtrusion("ingot" + ore.getName(), new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + ROD), 200);
-            RollerManager.instance().addRolling("ingot" + ore.getName(), new ItemStack(ModItems.itemMaterialObject, 1, ore.ordinal() + PLATE), 200);
-            RollerManager.instance().addRolling("plate" + ore.getName(), new ItemStack(ModItems.itemMaterialObject, 2, ore.ordinal() + FOIL), 200);
+            ExtruderManager.instance().addExtrusion("rod" + ore.getName(), new ItemStack(ModRegistry.itemMaterialObject, 1, ore.ordinal() + WIRE), 200);
+            ExtruderManager.instance().addExtrusion("ingot" + ore.getName(), new ItemStack(ModRegistry.itemMaterialObject, 2, ore.ordinal() + ROD), 200);
+            RollerManager.instance().addRolling("ingot" + ore.getName(), new ItemStack(ModRegistry.itemMaterialObject, 1, ore.ordinal() + PLATE), 200);
+            RollerManager.instance().addRolling("plate" + ore.getName(), new ItemStack(ModRegistry.itemMaterialObject, 2, ore.ordinal() + FOIL), 200);
         });
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.mechanicalAssembler),

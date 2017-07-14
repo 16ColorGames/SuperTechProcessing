@@ -8,7 +8,7 @@ package com.sixteencolorgames.supertechprocessing.compat.CraftTweaker;
 import static com.blamejared.mtlib.helpers.InputHelper.toStack;
 import com.sixteencolorgames.supertechprocessing.crafting.ExtruderManager;
 import com.sixteencolorgames.supertechprocessing.crafting.RollerManager;
-import com.sixteencolorgames.supertechtweaks.ModItems;
+import com.sixteencolorgames.supertechtweaks.ModRegistry;
 import com.sixteencolorgames.supertechtweaks.compat.crafttweaker.CraftTweaker;
 import com.sixteencolorgames.supertechtweaks.compat.crafttweaker.IMaterialListener;
 import com.sixteencolorgames.supertechtweaks.crafting.RecipeIngredient;
@@ -79,10 +79,10 @@ public class MineTweaker implements IMaterialListener {
 
     @Override
     public void addMaterial(Material mtrl) {
-        ExtruderManager.instance().addExtrusion("rod" + mtrl.getName(), new ItemStack(ModItems.itemMaterialObject, 1, mtrl.ordinal() + WIRE), 200);
-        ExtruderManager.instance().addExtrusion("ingot" + mtrl.getName(), new ItemStack(ModItems.itemMaterialObject, 2, mtrl.ordinal() + ROD), 200);
-        RollerManager.instance().addRolling("ingot" + mtrl.getName(), new ItemStack(ModItems.itemMaterialObject, 1, mtrl.ordinal() + PLATE), 200);
-        RollerManager.instance().addRolling("plate" + mtrl.getName(), new ItemStack(ModItems.itemMaterialObject, 2, mtrl.ordinal() + FOIL), 200);
+        ExtruderManager.instance().addExtrusion("rod" + mtrl.getName(), new ItemStack(ModRegistry.itemMaterialObject, 1, mtrl.ordinal() + WIRE), 200);
+        ExtruderManager.instance().addExtrusion("ingot" + mtrl.getName(), new ItemStack(ModRegistry.itemMaterialObject, 2, mtrl.ordinal() + ROD), 200);
+        RollerManager.instance().addRolling("ingot" + mtrl.getName(), new ItemStack(ModRegistry.itemMaterialObject, 1, mtrl.ordinal() + PLATE), 200);
+        RollerManager.instance().addRolling("plate" + mtrl.getName(), new ItemStack(ModRegistry.itemMaterialObject, 2, mtrl.ordinal() + FOIL), 200);
     }
 
     @Override

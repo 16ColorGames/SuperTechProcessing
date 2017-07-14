@@ -5,10 +5,10 @@
  */
 package com.sixteencolorgames.supertechprocessing.machines.rollerElectric;
 
+import com.sixteencolorgames.supertechprocessing.crafting.RollerManager;
 import static com.sixteencolorgames.supertechprocessing.machines.rollerElectric.TileEntityElectricRoller.COOK_TIME;
 import static com.sixteencolorgames.supertechprocessing.machines.rollerElectric.TileEntityElectricRoller.ENERGY;
 import static com.sixteencolorgames.supertechprocessing.machines.rollerElectric.TileEntityElectricRoller.MAX_ENERGY;
-import static com.sixteencolorgames.supertechprocessing.machines.rollerElectric.TileEntityElectricRoller.OUTPUT_SLOT;
 import static com.sixteencolorgames.supertechprocessing.machines.rollerElectric.TileEntityElectricRoller.TOTAL_COOK_TIME;
 import com.sixteencolorgames.supertechtweaks.gui.ContainerBase;
 import javax.annotation.Nullable;
@@ -84,13 +84,27 @@ public class ContainerElectricRoller extends ContainerBase {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (index == OUTPUT_SLOT) {
-                if (!this.mergeItemStack(itemstack1, 3, 39, true)) {
+            if (index == 1) {//if we are removing from the output
+                if (!this.mergeItemStack(itemstack1, 2, 38, true)) {
                     return null;
                 }
 
                 slot.onSlotChange(itemstack1, itemstack);
-            } 
+            } else if (index != 0) {//if we are removing from anywhere but the input
+                if (RollerManager.instance().getResult(itemstack1) == null) {
+                    if (!this.mergeItemStack(itemstack1, 0, 1, false)) {
+                        return null;
+                    }
+                } else if (index >= 2 && index < 29) {
+                    if (!this.mergeItemStack(itemstack1, 29, 38, false)) {
+                        return null;
+                    }
+                } else if (index >= 29 && index < 38 && !this.mergeItemStack(itemstack1, 2, 29, false)) {
+                    return null;
+                }
+            } else if (!this.mergeItemStack(itemstack1, 2, 38, false)) {
+                return null;
+            }
 
             if (itemstack1.stackSize == 0) {
                 slot.putStack((ItemStack) null);

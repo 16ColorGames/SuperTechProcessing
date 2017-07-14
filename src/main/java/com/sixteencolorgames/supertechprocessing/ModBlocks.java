@@ -33,14 +33,15 @@ public class ModBlocks {
     public static Block mechanicalAssembler;
 
     public static void init() {
-        extruder = register(new BlockCoalExtruder(false));
-        GameRegistry.registerTileEntity(TileEntityCoalExtruder.class, SuperTechProcessingMod.MODID + ".te_extruder");
+        //extruder = register(new BlockCoalExtruder(false));
+       // GameRegistry.registerTileEntity(TileEntityCoalExtruder.class, SuperTechProcessingMod.MODID + ".te_extruder");
 
         extruderElectric = register(new BlockElectricExtruder());
         GameRegistry.registerTileEntity(TileEntityElectricExtruder.class, SuperTechProcessingMod.MODID + ".te_extruder_electric");
 
         rollerElectric = register(new BlockElectricRoller());
         GameRegistry.registerTileEntity(TileEntityElectricRoller.class, SuperTechProcessingMod.MODID + ".te_roller_electric");
+        
         mechanicalAssembler = register(new BlockMechanicalAssembler());
         GameRegistry.registerTileEntity(TileEntityMechanicalAssembler.class, SuperTechProcessingMod.MODID + ".te_mechanical_assembler");
     }

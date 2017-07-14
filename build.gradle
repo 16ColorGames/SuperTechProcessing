@@ -20,7 +20,7 @@ task DeobsourceJar(type: Jar) {
     from sourceSets.main.allSource
     classifier = 'sources'
 }
-version = "1.0.2"
+version = "1.0.3"
 group= "com.sixteencolorgames.supertechprocessing.SuperTechProcessingMod.modId" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "supertechprocessingmod"
 sourceCompatibility = targetCompatibility = "1.8" // Need this here so eclipse task generates correctly.
